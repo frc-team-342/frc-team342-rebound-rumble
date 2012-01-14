@@ -5,6 +5,7 @@
 package org.first.team342.commands.thrower;
 
 import org.first.team342.commands.CommandBase;
+import org.first.team342.subsystems.Thrower;
 
 /**
  *
@@ -25,7 +26,7 @@ public class FlyWheelReverseCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        this.thrower.throwRverse();
+        this.thrower.throwReverse();
     }
 
     // Make this return true when this Command no longer needs to run execute()
