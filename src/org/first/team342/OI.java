@@ -1,19 +1,22 @@
-
 package org.first.team342;
 
 import edu.wpi.first.wpilibj.Joystick;
 
 public class OI {
-    private Joystick driveController = new Joystick(RobotMap.JOYSTICK_DRIVE_CONTROL);
-    private static OI instance = new OI();
-    // Process operator interface input here.
-    private OI(){
+
+    private Joystick driveController;
+    
+    private static final OI INSTANCE = new OI();
+
+    private OI() {
+        this.driveController = new Joystick(RobotMap.JOYSTICK_DRIVE_CONTROL);
     }
-    public static OI getInstance(){
-        return instance;
+
+    public static OI getInstance() {
+        return INSTANCE;
     }
-    public Joystick getDriveController(){
+
+    public Joystick getDriveController() {
         return driveController;
     }
 }
-

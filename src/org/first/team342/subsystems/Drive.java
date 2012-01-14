@@ -16,8 +16,7 @@ import org.first.team342.RobotMap;
  * @author Team 342
  */
 public class Drive extends Subsystem {
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+    
     private static final Drive INSTANCE = new Drive();
     
     private SpeedController leftFront;

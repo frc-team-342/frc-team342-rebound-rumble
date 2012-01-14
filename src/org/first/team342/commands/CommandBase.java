@@ -1,7 +1,6 @@
 package org.first.team342.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.first.team342.OI;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -11,16 +10,7 @@ import org.first.team342.OI;
  */
 public abstract class CommandBase extends Command {
 
-    public static OI oi;
-
     public static void init() {
-        // This MUST be here. If the OI creates Commands (which it very likely
-        // will), constructing it during the construction of CommandBase (from
-        // which commands extend), subsystems are not guaranteed to be
-        // yet. Thus, their requires() statements may grab null pointers. Bad
-        // news. Don't move it.
-        oi = OI.getInstance();
-
     }
 
     public CommandBase(String name) {
