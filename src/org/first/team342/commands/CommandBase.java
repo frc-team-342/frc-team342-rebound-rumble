@@ -10,14 +10,22 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public abstract class CommandBase extends Command {
 
-    public static void init() {
-    }
+    private boolean finished;
 
     public CommandBase(String name) {
         super(name);
+        this.finished = false;
     }
 
     public CommandBase() {
         super();
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
+    }
+
+    protected boolean isFinished() {
+        return this.finished;
     }
 }

@@ -9,13 +9,13 @@ import org.first.team342.subsystems.Thrower;
 
 /**
  *
- * @author Team 342
+ * @author abrightwell
  */
-public class FlyWheelReverseCommand extends CommandBase {
+public class FlyWheelStopCommand extends CommandBase {
     
     private Thrower thrower;
     
-    public FlyWheelReverseCommand() {
+    public FlyWheelStopCommand() {
         this.thrower = Thrower.getInstance();
         requires(this.thrower);
     }
@@ -26,12 +26,8 @@ public class FlyWheelReverseCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        this.thrower.throwReverse();
-    }
-
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
+        this.thrower.stop();
+        this.setFinished(true);
     }
 
     // Called once after isFinished returns true

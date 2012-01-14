@@ -30,9 +30,6 @@ public class ReboundRumbleRobot extends IterativeRobot {
      */
     public void robotInit() {
         joystickCommand = new DriveWithJoystick();
-
-        // Initialize all subsystems
-        CommandBase.init();
     }
 
     public void autonomousInit() {

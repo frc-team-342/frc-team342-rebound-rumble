@@ -11,7 +11,7 @@ import org.first.team342.RobotMap;
 
 /**
  *
- * @author abrightwell
+ * @author Team 342
  */
 public class Thrower extends Subsystem {
     // Put methods for controlling this subsystem
