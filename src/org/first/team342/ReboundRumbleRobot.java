@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import org.first.team342.commands.CommandBase;
+import org.first.team342.commands.DriveWithJoystick;
 import org.first.team342.commands.ExampleCommand;
-import org.first.team342.subsystems.ExampleSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,6 +25,7 @@ import org.first.team342.subsystems.ExampleSubsystem;
 public class ReboundRumbleRobot extends IterativeRobot {
 
     Command autonomousCommand;
+    private Command joystickCommand;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -32,6 +33,7 @@ public class ReboundRumbleRobot extends IterativeRobot {
      */
     public void robotInit() {
         // instantiate the command used for the autonomous period
+        joystickCommand = new DriveWithJoystick();
         autonomousCommand = new ExampleCommand();
 
         // Initialize all subsystems
@@ -56,6 +58,7 @@ public class ReboundRumbleRobot extends IterativeRobot {
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
 		autonomousCommand.cancel();
+                joystickCommand.start();
     }
 
     /**
