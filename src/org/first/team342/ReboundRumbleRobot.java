@@ -45,7 +45,6 @@ public class ReboundRumbleRobot extends IterativeRobot {
     }
 
     public void teleopInit() {
-        autonomousCommand.cancel();
         joystickCommand.start();
     }
 

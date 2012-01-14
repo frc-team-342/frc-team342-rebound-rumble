@@ -4,6 +4,7 @@
  */
 package org.first.team342.commands.thrower;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import org.first.team342.commands.CommandBase;
 import org.first.team342.subsystems.Thrower;
 
@@ -25,7 +26,9 @@ public class FlyWheelForwardCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        this.thrower.throwForward();
+        DriverStation driverStation = DriverStation.getInstance();
+        double value = driverStation.getAnalogIn(1) / 5;
+        this.thrower.throwForward(value);
     }
 
     // Make this return true when this Command no longer needs to run execute()
