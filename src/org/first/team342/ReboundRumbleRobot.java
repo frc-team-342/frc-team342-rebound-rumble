@@ -9,7 +9,6 @@ package org.first.team342;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import org.first.team342.commands.CommandBase;
 import org.first.team342.commands.drive.DriveWithJoystick;
 
 /**

@@ -4,6 +4,7 @@
  */
 package org.first.team342.subsystems;
 
+import edu.wpi.first.wpilibj.ADXL345_I2C;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -25,6 +26,7 @@ public class Drive extends Subsystem {
     private SpeedController rightRear;
     
     private RobotDrive robotDrive;
+    private ADXL345_I2C accelerometer;
     
     private Drive() {
         this.leftFront = new Jaguar(RobotMap.PWM_CHANNEL_LEFT_FRONT);
@@ -36,6 +38,9 @@ public class Drive extends Subsystem {
         this.robotDrive.setSafetyEnabled(false);
         this.robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
         this.robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+        
+        //accwlerometer
+        this.accelerometer = new ADXL345_I2C(1, ADXL345_I2C.DataFormat_Range.k2G);
     }
     
     public static Drive getInstance() {
@@ -47,6 +52,10 @@ public class Drive extends Subsystem {
         double y = joystick.getY();
         double rot = joystick.getZ();
         this.robotDrive.mecanumDrive_Cartesian(x, y, rot, 0.0);
+        System.out.println(this.accelerometer.getAcceleration(ADXL345_I2C.Axes.kX) + "\t" + 
+                    this.accelerometer.getAcceleration(ADXL345_I2C.Axes.kY)+ "\t" + 
+                    this.accelerometer.getAcceleration(ADXL345_I2C.Axes.kZ));
+
     }
     
 
