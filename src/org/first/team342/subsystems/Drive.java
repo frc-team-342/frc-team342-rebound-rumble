@@ -57,16 +57,29 @@ public class Drive extends Subsystem {
         double y = joystick.getY();
         double rot = joystick.getZ();
         this.robotDrive.mecanumDrive_Cartesian(x, y, rot, 0.0);
-        System.out.println(this.accelerometer.getAcceleration(ADXL345_I2C.Axes.kY));
+        //System.out.println(this.accelerometer.getAcceleration(ADXL345_I2C.Axes.kY));
         
     }
     public void balance(){
         double angle = this.gyro.getAngle();
-        if (angle <= 5){
-            System.out.println(angle);
+        System.out.println(angle);
+        if (angle >= 5 && angle <= 12.5){
+            this.robotDrive.mecanumDrive_Cartesian(0.0, -0.1, 0.0, 0.0);
         }
-        else if (angle >= -5){
-            System.out.println(angle);
+        else if (angle <= -5 && angle >= -12.5){
+            this.robotDrive.mecanumDrive_Cartesian(0.0, 0.1, 0.0, 0.0);
+        }
+        else if (angle > 12.5 && angle <= 15){
+            this.robotDrive.mecanumDrive_Cartesian(0.0, -0.30, 0.0, 0.0);
+        }
+        else if (angle < -12.5 && angle >= -15){
+            this.robotDrive.mecanumDrive_Cartesian(0.0, 0.30, 0.0, 0.0);
+        }
+        else if (angle > 15){
+            this.robotDrive.mecanumDrive_Cartesian(0.0, -0.35, 0.0, 0.0);
+        }
+        else if (angle < -15){
+            this.robotDrive.mecanumDrive_Cartesian(0.0, 0.35, 0.0, 0.0);
         }
         else{
             this.robotDrive.stopMotor();
