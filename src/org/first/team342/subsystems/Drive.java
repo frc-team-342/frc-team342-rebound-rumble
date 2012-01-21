@@ -5,6 +5,7 @@
 package org.first.team342.subsystems;
 
 import edu.wpi.first.wpilibj.ADXL345_I2C;
+import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -26,8 +27,10 @@ public class Drive extends Subsystem {
     private SpeedController rightRear;
     
     private RobotDrive robotDrive;
+    //accelerometer
     private ADXL345_I2C accelerometer;
-    
+    //Gyro
+    private Gyro gyro;
     private Drive() {
         this.leftFront = new Jaguar(RobotMap.PWM_CHANNEL_LEFT_FRONT);
         this.rightFront = new Jaguar(RobotMap.PWM_CHANNEL_RIGHT_FRONT);
@@ -39,8 +42,10 @@ public class Drive extends Subsystem {
         this.robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
         this.robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
         
-        //accelerometer
-        this.accelerometer = new ADXL345_I2C(1, ADXL345_I2C.DataFormat_Range.k4G);
+      //create the accelerometer object
+        this.accelerometer = new ADXL345_I2C(1, ADXL345_I2C.DataFormat_Range.k16G);
+        // create the gyro object
+        this.gyro = new Gyro(RobotMap.DEFAULT_ANNALOG_SLOT, RobotMap.ANALOG_CHANNEL_GYRO);
     }
     
     public static Drive getInstance() {
@@ -52,6 +57,7 @@ public class Drive extends Subsystem {
         double y = joystick.getY();
         double rot = joystick.getZ();
         this.robotDrive.mecanumDrive_Cartesian(x, y, rot, 0.0);
+<<<<<<< HEAD
         
         ADXL345_I2C.AllAxes ac = this.accelerometer.getAccelerations();
         
@@ -59,8 +65,36 @@ public class Drive extends Subsystem {
                     ac.YAxis + "\t" + 
                     ac.ZAxis);
 
+=======
+        //System.out.println(this.accelerometer.getAcceleration(ADXL345_I2C.Axes.kY));
+        
     }
-    
+    public void balance(){
+        double angle = this.gyro.getAngle();
+        System.out.println(angle);
+        if (angle >= 5 && angle <= 12.5){
+            this.robotDrive.mecanumDrive_Cartesian(0.0, -0.1, 0.0, 0.0);
+        }
+        else if (angle <= -5 && angle >= -12.5){
+            this.robotDrive.mecanumDrive_Cartesian(0.0, 0.1, 0.0, 0.0);
+        }
+        else if (angle > 12.5 && angle <= 15){
+            this.robotDrive.mecanumDrive_Cartesian(0.0, -0.30, 0.0, 0.0);
+        }
+        else if (angle < -12.5 && angle >= -15){
+            this.robotDrive.mecanumDrive_Cartesian(0.0, 0.30, 0.0, 0.0);
+        }
+        else if (angle > 15){
+            this.robotDrive.mecanumDrive_Cartesian(0.0, -0.35, 0.0, 0.0);
+        }
+        else if (angle < -15){
+            this.robotDrive.mecanumDrive_Cartesian(0.0, 0.35, 0.0, 0.0);
+        }
+        else{
+            this.robotDrive.stopMotor();
+        }
+>>>>>>> 2c5a6799c5d2313076d9879f29e2a56fe8cb65a1
+    }
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

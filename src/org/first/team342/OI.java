@@ -1,7 +1,10 @@
 package org.first.team342;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.SerialPort.StopBits;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.first.team342.commands.drive.DriveWithJoystick;
+import org.first.team342.commands.drive.GyroBalanceCommand;
 import org.first.team342.commands.thrower.FlyWheelForwardCommand;
 import org.first.team342.commands.thrower.FlyWheelReverseCommand;
 import org.first.team342.commands.thrower.FlyWheelStopCommand;
@@ -17,13 +20,16 @@ public class OI {
         
         JoystickButton throwerForward = new JoystickButton(driveController, 1);
         JoystickButton throwerReverse = new JoystickButton(driveController, 2);
+        JoystickButton balance = new JoystickButton(driveController, 3);
+        
+        balance.whileHeld(new GyroBalanceCommand());
+        balance.whenReleased(new DriveWithJoystick());
         
         throwerForward.whileHeld(new FlyWheelForwardCommand());
         throwerForward.whenReleased(new FlyWheelStopCommand());
         
         throwerReverse.whileHeld(new FlyWheelReverseCommand());
         throwerReverse.whenReleased(new FlyWheelStopCommand());
-        
     }
 
     public static OI getInstance() {

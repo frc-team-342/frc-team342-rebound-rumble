@@ -7,6 +7,7 @@ package org.first.team342;
  * floating around.
  */
 public class RobotMap {
+    
 
     // Speed Controller Channels for Module #1.
     public static final int PWM_CHANNEL_LEFT_FRONT = 1;
@@ -17,4 +18,11 @@ public class RobotMap {
     
     //Joystick ports.
     public static final int JOYSTICK_DRIVE_CONTROL = 1;
+    
+    //Annanlog constants
+    public static final int DEFAULT_ANNALOG_SLOT = 1;
+    
+    //Gyro constants
+    public static final int ANALOG_CHANNEL_GYRO = 1;
+    
 }
