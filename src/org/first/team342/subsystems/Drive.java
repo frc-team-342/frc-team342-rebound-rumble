@@ -39,8 +39,8 @@ public class Drive extends Subsystem {
         this.robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
         this.robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
         
-        //accwlerometer
-        this.accelerometer = new ADXL345_I2C(1, ADXL345_I2C.DataFormat_Range.k2G);
+        //accelerometer
+        this.accelerometer = new ADXL345_I2C(1, ADXL345_I2C.DataFormat_Range.k4G);
     }
     
     public static Drive getInstance() {
@@ -52,9 +52,12 @@ public class Drive extends Subsystem {
         double y = joystick.getY();
         double rot = joystick.getZ();
         this.robotDrive.mecanumDrive_Cartesian(x, y, rot, 0.0);
-        System.out.println(this.accelerometer.getAcceleration(ADXL345_I2C.Axes.kX) + "\t" + 
-                    this.accelerometer.getAcceleration(ADXL345_I2C.Axes.kY)+ "\t" + 
-                    this.accelerometer.getAcceleration(ADXL345_I2C.Axes.kZ));
+        
+        ADXL345_I2C.AllAxes ac = this.accelerometer.getAccelerations();
+        
+        System.out.println(ac.XAxis + "\t" + 
+                    ac.YAxis + "\t" + 
+                    ac.ZAxis);
 
     }
     
