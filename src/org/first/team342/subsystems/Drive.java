@@ -61,29 +61,48 @@ public class Drive extends Subsystem {
         
     }
     public void balance(){
+        final double ratio = .02;
         double angle = this.gyro.getAngle();
-        System.out.println(angle);
-        if (angle >= 5 && angle <= 12.5){
-            this.robotDrive.mecanumDrive_Cartesian(0.0, -0.1, 0.0, 0.0);
+        double speed = (angle* ratio);
+        System.out.println(angle + "\t" + speed);
+        if (angle >= 5 &&  angle <= -5){
+            this.robotDrive.mecanumDrive_Cartesian(0.0, 0.0, 0.0, 0.0);          
         }
-        else if (angle <= -5 && angle >= -12.5){
-            this.robotDrive.mecanumDrive_Cartesian(0.0, 0.1, 0.0, 0.0);
-        }
-        else if (angle > 12.5 && angle <= 15){
-            this.robotDrive.mecanumDrive_Cartesian(0.0, -0.30, 0.0, 0.0);
-        }
-        else if (angle < -12.5 && angle >= -15){
-            this.robotDrive.mecanumDrive_Cartesian(0.0, 0.30, 0.0, 0.0);
-        }
-        else if (angle > 15){
-            this.robotDrive.mecanumDrive_Cartesian(0.0, -0.35, 0.0, 0.0);
-        }
-        else if (angle < -15){
-            this.robotDrive.mecanumDrive_Cartesian(0.0, 0.35, 0.0, 0.0);
+        else if(angle <= 35 && angle >= -35){
+            this.robotDrive.mecanumDrive_Cartesian(0.0, -speed, 0.0, 0.00);
         }
         else{
             this.robotDrive.stopMotor();
         }
+    }
+//    public void balance(){
+//        double angle = this.gyro.getAngle();
+//        System.out.println(angle);
+//        if (angle >= 5 && angle <= 12.5){
+//            this.robotDrive.mecanumDrive_Cartesian(0.0, -0.1, 0.0, 0.0);
+//        }
+//        else if (angle <= -5 && angle >= -12.5){
+//            this.robotDrive.mecanumDrive_Cartesian(0.0, 0.1, 0.0, 0.0);
+//        }
+//        else if (angle > 12.5 && angle <= 15){
+//            this.robotDrive.mecanumDrive_Cartesian(0.0, -0.30, 0.0, 0.0);
+//        }
+//        else if (angle < -12.5 && angle >= -15){
+//            this.robotDrive.mecanumDrive_Cartesian(0.0, 0.30, 0.0, 0.0);
+//        }
+//        else if (angle > 15){
+//            this.robotDrive.mecanumDrive_Cartesian(0.0, -0.35, 0.0, 0.0);
+//        }
+//        else if (angle < -15){
+//            this.robotDrive.mecanumDrive_Cartesian(0.0, 0.35, 0.0, 0.0);
+//        }
+//        else{
+//            this.robotDrive.stopMotor();
+//        }
+//    }
+    
+    public void resetGyro(){
+        this.gyro.reset();
     }
 
     public void initDefaultCommand() {
