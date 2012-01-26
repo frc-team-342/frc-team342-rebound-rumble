@@ -57,43 +57,50 @@ public class Drive extends Subsystem {
         double y = joystick.getY();
         double rot = joystick.getZ();
         this.robotDrive.mecanumDrive_Cartesian(x, y, rot, 0.0);
-<<<<<<< HEAD
-        
-        ADXL345_I2C.AllAxes ac = this.accelerometer.getAccelerations();
-        
-        System.out.println(ac.XAxis + "\t" + 
-                    ac.YAxis + "\t" + 
-                    ac.ZAxis);
-
-=======
         //System.out.println(this.accelerometer.getAcceleration(ADXL345_I2C.Axes.kY));
         
     }
     public void balance(){
+        //----------------------------------------------------------------------
+        //Yeske's Elegant Gyro-Based Balancing
+        //----------------------------------------------------------------------
         double angle = this.gyro.getAngle();
-        System.out.println(angle);
-        if (angle >= 5 && angle <= 12.5){
-            this.robotDrive.mecanumDrive_Cartesian(0.0, -0.1, 0.0, 0.0);
-        }
-        else if (angle <= -5 && angle >= -12.5){
-            this.robotDrive.mecanumDrive_Cartesian(0.0, 0.1, 0.0, 0.0);
-        }
-        else if (angle > 12.5 && angle <= 15){
-            this.robotDrive.mecanumDrive_Cartesian(0.0, -0.30, 0.0, 0.0);
-        }
-        else if (angle < -12.5 && angle >= -15){
-            this.robotDrive.mecanumDrive_Cartesian(0.0, 0.30, 0.0, 0.0);
-        }
-        else if (angle > 15){
-            this.robotDrive.mecanumDrive_Cartesian(0.0, -0.35, 0.0, 0.0);
-        }
-        else if (angle < -15){
-            this.robotDrive.mecanumDrive_Cartesian(0.0, 0.35, 0.0, 0.0);
-        }
-        else{
+        double ySpeed = 0.0;
+        if (angle > 5  || angle < -5){
+            ySpeed = -angle * 2.0 / 100;            
+        } else {
             this.robotDrive.stopMotor();
         }
->>>>>>> 2c5a6799c5d2313076d9879f29e2a56fe8cb65a1
+        this.robotDrive.mecanumDrive_Cartesian(0.0, ySpeed, 0.0, 0.0);
+
+        //----------------------------------------------------------------------
+        //Collaborative Brute-Force Gyro-Based Balancing
+        //----------------------------------------------------------------------
+//        System.out.println(angle);
+//        if (angle >= 5 && angle <= 12.5){
+//            this.robotDrive.mecanumDrive_Cartesian(0.0, -0.1, 0.0, 0.0);
+//        }
+//        else if (angle <= -5 && angle >= -12.5){
+//            this.robotDrive.mecanumDrive_Cartesian(0.0, 0.1, 0.0, 0.0);
+//        }
+//        else if (angle > 12.5 && angle <= 15){
+//            this.robotDrive.mecanumDrive_Cartesian(0.0, -0.30, 0.0, 0.0);
+//        }
+//        else if (angle < -12.5 && angle >= -15){
+//            this.robotDrive.mecanumDrive_Cartesian(0.0, 0.30, 0.0, 0.0);
+//        }
+//        else if (angle > 15){
+//            this.robotDrive.mecanumDrive_Cartesian(0.0, -0.35, 0.0, 0.0);
+//        }
+//        else if (angle < -15){
+//            this.robotDrive.mecanumDrive_Cartesian(0.0, 0.35, 0.0, 0.0);
+//        }
+//        else{
+//            this.robotDrive.stopMotor();
+//        }
+    }
+    public void setGyro(){
+    this.gyro.reset();
     }
 
     public void initDefaultCommand() {
