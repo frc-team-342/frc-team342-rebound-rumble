@@ -4,8 +4,9 @@
  */
 package org.first.team342.subsystems;
 
+import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.first.team342.RobotMap;
 
@@ -24,7 +25,11 @@ public class Thrower extends Subsystem {
     public static final double DEFAULT_THROWER_SPEED_REVERSE = -0.25;
     
     private Thrower() {
-        this.throwerMotor = new Victor(RobotMap.PWM_CHANNEL_THROWER_MOTOR);
+        try {
+            this.throwerMotor = new CANJaguar(RobotMap.CAN_DEVICE_THROWER_MOTOR);
+        } catch (CANTimeoutException ex) {
+            ex.printStackTrace();
+        }
     }
     
     public static Thrower getInstance() {
