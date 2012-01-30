@@ -14,8 +14,11 @@ import org.first.team342.subsystems.Drive;
 public class GyroBalanceCommand extends CommandBase {
     private Drive drive = Drive.getInstance();
     
-    public GyroBalanceCommand() {
+    private double powerFactor;
+    
+    public GyroBalanceCommand(double powerFactor) {
         requires(drive);
+        this.powerFactor = powerFactor;
     }
 
     // Called just before this Command runs the first time
@@ -24,7 +27,7 @@ public class GyroBalanceCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        drive.balance();
+        drive.balance(powerFactor);
     }
 
     // Make this return true when this Command no longer needs to run execute()

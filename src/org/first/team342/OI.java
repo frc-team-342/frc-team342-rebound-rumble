@@ -20,10 +20,14 @@ public class OI {
         
         JoystickButton throwerForward = new JoystickButton(driveController, 1);
         JoystickButton throwerReverse = new JoystickButton(driveController, 2);
-        JoystickButton balance = new JoystickButton(driveController, 3);
+        JoystickButton balanceOne = new JoystickButton(driveController, 3);
+        JoystickButton balanceTwo = new JoystickButton(driveController, 4);
         
-        balance.whileHeld(new GyroBalanceCommand());
-        balance.whenReleased(new DriveWithJoystick());
+        balanceOne.whileHeld(new GyroBalanceCommand(1.0));
+        balanceOne.whenReleased(new DriveWithJoystick());
+        
+        balanceTwo.whileHeld(new GyroBalanceCommand(2.0));
+        balanceTwo.whenReleased(new DriveWithJoystick());
         
         throwerForward.whileHeld(new FlyWheelForwardCommand());
         throwerForward.whenReleased(new FlyWheelStopCommand());

@@ -28,6 +28,7 @@ public class ReboundRumbleRobot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+        initializationCommand = new InitializeRobot();
         joystickCommand = new DriveWithJoystick();
     }
 
@@ -44,6 +45,7 @@ public class ReboundRumbleRobot extends IterativeRobot {
     }
 
     public void teleopInit() {
+        
         joystickCommand.start();
     }
 
