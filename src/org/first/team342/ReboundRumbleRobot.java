@@ -28,7 +28,7 @@ public class ReboundRumbleRobot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-        initializationCommand = new InitializeRobot();
+//        initializationCommand = new InitializeRobot();
         joystickCommand = new DriveWithJoystick();
     }
 
