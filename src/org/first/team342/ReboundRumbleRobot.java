@@ -7,6 +7,7 @@
 package org.first.team342;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -54,9 +55,10 @@ public class ReboundRumbleRobot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        
-        //Start thrower and return speed to SmartDashboard
-//        Thrower thrower = Thrower.getInstance();
-//        SmartDashboard.putDouble("Thrower Speed: ", thrower.getSpeed());
+
+        Thrower thrower = Thrower.getInstance();
+
+        thrower.updateStatus();
+        thrower.updatePID();
     }
 }
