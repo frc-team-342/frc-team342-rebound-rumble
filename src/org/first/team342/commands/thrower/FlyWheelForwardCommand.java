@@ -16,7 +16,7 @@ public class FlyWheelForwardCommand extends CommandBase {
     private Thrower thrower;
     
     public FlyWheelForwardCommand() {
-//        this.thrower = Thrower.getInstance();    
+        this.thrower = Thrower.getInstance();    
         requires(this.thrower);
     }
 

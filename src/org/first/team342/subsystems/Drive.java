@@ -5,7 +5,6 @@
 package org.first.team342.subsystems;
 
 import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.first.team342.RobotMap;
 import org.first.team342.commands.drive.DriveWithJoystick;
