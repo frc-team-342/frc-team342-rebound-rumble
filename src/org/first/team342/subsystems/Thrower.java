@@ -5,8 +5,13 @@
 package org.first.team342.subsystems;
 
 import edu.wpi.first.wpilibj.CANJaguar;
+<<<<<<< master
+=======
+import edu.wpi.first.wpilibj.Preferences;
+>>>>>>> local
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.first.team342.RobotMap;
 
 /**
@@ -19,31 +24,47 @@ public class Thrower extends Subsystem {
 
     private static final Thrower INSTANCE = new Thrower();
     private CANJaguar throwerMotor;
+<<<<<<< master
     public static final double DEFAULT_THROWER_SPEED_FORWARD = 1000;
     public static final double DEFAULT_THROWER_SPEED_REVERSE = -1000;
     
+=======
+    // TODO: need to redefine these values.
+    public static final double DEFAULT_THROWER_SPEED_FORWARD = 0.25;
+    // TODO: need to redefine these values.
+    public static final double DEFAULT_THROWER_SPEED_REVERSE = -0.25;
+
+>>>>>>> local
     private Thrower() {
         try {
+
             this.throwerMotor = new CANJaguar(RobotMap.CAN_DEVICE_THROWER_MOTOR);
             this.throwerMotor.changeControlMode(CANJaguar.ControlMode.kSpeed);
+<<<<<<< master
             this.throwerMotor.setPID(.390, 0.175, 0);
             this.throwerMotor.configEncoderCodesPerRev(360);
             this.throwerMotor.setSpeedReference(CANJaguar.SpeedReference.kEncoder);
             this.throwerMotor.enableControl();
             //this.throwerMotor.setX(1000);
+=======
+            this.updatePID();
+            this.throwerMotor.configEncoderCodesPerRev(360);
+            this.throwerMotor.setSpeedReference(CANJaguar.SpeedReference.kEncoder);
+            this.throwerMotor.enableControl();
+>>>>>>> local
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
     }
-    
+
     public static Thrower getInstance() {
         return INSTANCE;
     }
-    
+
     public void throwForward() {
         this.throwForward(DEFAULT_THROWER_SPEED_FORWARD);
     }
-    
+
     public void throwForward(double value) {
         try {
             this.throwerMotor.setX(value);
@@ -51,11 +72,11 @@ public class Thrower extends Subsystem {
             ex.printStackTrace();
         }
     }
-    
+
     public void throwReverse() {
         this.throwReverse(DEFAULT_THROWER_SPEED_REVERSE);
     }
-    
+
     public void throwReverse(double value) {
         try {
             this.throwerMotor.setX(value);
@@ -63,7 +84,7 @@ public class Thrower extends Subsystem {
             ex.printStackTrace();
         }
     }
-    
+
     public void stop() {
         try {
             this.throwerMotor.setX(0.0);
@@ -73,8 +94,27 @@ public class Thrower extends Subsystem {
     }
     
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+    }
+
+    public void updatePID() {
+        Preferences preferences = Preferences.getInstance();
+        double proportionalGain = preferences.getDouble("Thrower_Proportional", 0.0);
+        double integralGain = preferences.getDouble("Thrower_Integral", 0.0);
+        double derivativeGain = preferences.getDouble("Thrower_Derivative", 0.0);
+        
+        try {
+            this.throwerMotor.setPID(proportionalGain, integralGain, derivativeGain);
+        } catch (CANTimeoutException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void updateStatus() {
+        try {
+            SmartDashboard.putDouble("Shooter Speed: ", this.throwerMotor.getSpeed());
+        } catch (CANTimeoutException ex) {
+            ex.printStackTrace();
+        }
     }
     
     public double getSpeed() {

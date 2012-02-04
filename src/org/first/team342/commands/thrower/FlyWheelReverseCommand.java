@@ -28,7 +28,7 @@ public class FlyWheelReverseCommand extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         DriverStation driverStation = DriverStation.getInstance();
-        double value = 0.0 - driverStation.getAnalogIn(1) / 5;
+        double value = 0.0 - driverStation.getAnalogIn(1) * 600;
         this.thrower.throwReverse(value);
     }
 

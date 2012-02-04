@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.first.team342.commands.drive.DriveWithJoystick;
 import org.first.team342.commands.drive.GyroBalanceCommand;
-import org.first.team342.commands.drive.ResetGyroCommand;
 import org.first.team342.commands.thrower.FlyWheelForwardCommand;
 import org.first.team342.commands.thrower.FlyWheelReverseCommand;
 import org.first.team342.commands.thrower.FlyWheelStopCommand;
@@ -26,9 +25,12 @@ public class OI {
         balance.whileHeld(new GyroBalanceCommand());
         balance.whenReleased(new DriveWithJoystick());
         
+<<<<<<< master
         resetGyro.whileHeld(new ResetGyroCommand());
         resetGyro.whenReleased(new DriveWithJoystick());
         
+=======
+>>>>>>> local
         throwerForward.whenPressed(new FlyWheelForwardCommand());
         throwerForward.whenReleased(new FlyWheelStopCommand());
         
