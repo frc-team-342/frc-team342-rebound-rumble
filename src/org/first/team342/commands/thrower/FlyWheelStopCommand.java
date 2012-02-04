@@ -16,7 +16,7 @@ public class FlyWheelStopCommand extends CommandBase {
     private Thrower thrower;
     
     public FlyWheelStopCommand() {
-        this.thrower = Thrower.getInstance();
+//        this.thrower = Thrower.getInstance();
         requires(this.thrower);
     }
 

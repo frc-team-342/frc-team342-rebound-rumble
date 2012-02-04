@@ -4,8 +4,8 @@
  */
 package org.first.team342.subsystems;
 
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.first.team342.RobotMap;
 
@@ -16,27 +16,35 @@ import org.first.team342.RobotMap;
 public class Thrower extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    private static final Thrower INSTANCE = new Thrower();
+//    private static final Thrower INSTANCE = new Thrower();
     
-    private SpeedController throwerMotor;
+    private CANJaguar throwerMotor;
     
     public static final double DEFAULT_THROWER_SPEED_FORWARD = 0.25;
     public static final double DEFAULT_THROWER_SPEED_REVERSE = -0.25;
     
-    private Thrower() {
-        this.throwerMotor = new Victor(RobotMap.PWM_CHANNEL_THROWER_MOTOR);
-    }
+//    private Thrower() {
+//        try {
+//            this.throwerMotor = new CANJaguar(RobotMap.CAN_DEVICE_THROWER_MOTOR);
+//        } catch (CANTimeoutException ex) {
+//            ex.printStackTrace();
+//        }
+//    }
     
-    public static Thrower getInstance() {
-        return INSTANCE;
-    }
+//    public static Thrower getInstance() {
+//        return INSTANCE;
+//    }
     
     public void throwForward() {
         this.throwForward(DEFAULT_THROWER_SPEED_FORWARD);
     }
     
     public void throwForward(double value) {
-        this.throwerMotor.set(value);
+        try {
+            this.throwerMotor.setX(value);
+        } catch (CANTimeoutException ex) {
+            ex.printStackTrace();
+        }
     }
     
     public void throwReverse() {
@@ -44,11 +52,29 @@ public class Thrower extends Subsystem {
     }
     
     public void throwReverse(double value) {
-        this.throwerMotor.set(value);
+        try {
+            this.throwerMotor.setX(value);
+        } catch (CANTimeoutException ex) {
+            ex.printStackTrace();
+        }
     }
     
     public void stop() {
-        this.throwerMotor.set(0.0);
+        try {
+            this.throwerMotor.setX(0.0);
+        } catch (CANTimeoutException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public double getSpeed() {
+        double value = 0.0;
+        try {
+            value = this.throwerMotor.getSpeed();
+        } catch (CANTimeoutException ex) {
+            ex.printStackTrace();
+        }
+        return value;
     }
 
     public void initDefaultCommand() {

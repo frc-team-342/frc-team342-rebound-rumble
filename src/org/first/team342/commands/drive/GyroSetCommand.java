@@ -2,22 +2,21 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.first.team342.commands.thrower;
+package org.first.team342.commands.drive;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import org.first.team342.commands.CommandBase;
-import org.first.team342.subsystems.Thrower;
+import org.first.team342.subsystems.Drive;
 
 /**
  *
  * @author Team 342
  */
-public class FlyWheelForwardCommand extends CommandBase {
-    private Thrower thrower;
+public class GyroSetCommand extends CommandBase {
+    private Drive drive = Drive.getInstance();
+    private boolean finished = false;
     
-    public FlyWheelForwardCommand() {
-//        this.thrower = Thrower.getInstance();    
-        requires(this.thrower);
+    public GyroSetCommand() {
+        requires(drive);
     }
 
     // Called just before this Command runs the first time
@@ -26,14 +25,12 @@ public class FlyWheelForwardCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        DriverStation driverStation = DriverStation.getInstance();
-        double value = driverStation.getAnalogIn(1) / 5;
-        this.thrower.throwForward(value);
+        this.drive.setGyro();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return finished;
     }
 
     // Called once after isFinished returns true
@@ -43,5 +40,6 @@ public class FlyWheelForwardCommand extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        this.finished = true;
     }
 }
