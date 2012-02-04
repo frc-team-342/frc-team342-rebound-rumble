@@ -55,17 +55,10 @@ public class ReboundRumbleRobot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-<<<<<<< master
+
         Thrower thrower = Thrower.getInstance();
-        
-        SmartDashboard.putDouble("thrower speed", thrower.getSpeed());
-        System.out.println("thrower speed" + thrower.getSpeed());
-=======
-        
-        Thrower thrower = Thrower.getInstance();
-        
+
         thrower.updateStatus();
         thrower.updatePID();
->>>>>>> local
     }
 }

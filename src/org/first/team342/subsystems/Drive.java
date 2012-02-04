@@ -32,26 +32,6 @@ public class Drive extends Subsystem {
     private Gyro gyro;
 
     private Drive() {
-<<<<<<< master
-//        try {
-//            this.leftFront = new CANJaguar(RobotMap.CAN_DEVICE_LEFT_FRONT);
-//            this.rightFront = new CANJaguar(RobotMap.CAN_DEVICE_RIGHT_FRONT);
-//            this.leftRear = new CANJaguar(RobotMap.CAN_DEVICE_LEFT_REAR);
-//            this.rightRear = new CANJaguar(RobotMap.CAN_DEVICE_RIGHT_REAR);
-//        } catch (CANTimeoutException ex) {
-//            ex.printStackTrace();
-//        }
-//
-//        this.robotDrive = new RobotDrive(leftFront, leftRear, rightFront, rightRear);
-//        this.robotDrive.setSafetyEnabled(false);
-//        this.robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-//        this.robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
-//
-//        //create the accelerometer object
-//        this.accelerometer = new ADXL345_I2C(1, ADXL345_I2C.DataFormat_Range.k16G);
-//        // create the gyro object
-//        this.gyro = new Gyro(RobotMap.DEFAULT_ANNALOG_SLOT, RobotMap.ANALOG_CHANNEL_GYRO);
-=======
         this.leftFront = new Jaguar(RobotMap.PWM_CHANNEL_LEFT_FRONT);
         this.rightFront = new Jaguar(RobotMap.PWM_CHANNEL_RIGHT_FRONT);
         this.leftRear = new Jaguar(RobotMap.PWM_CHANNEL_LEFT_REAR);
@@ -67,8 +47,6 @@ public class Drive extends Subsystem {
         this.accelerometer = new ADXL345_I2C(1, ADXL345_I2C.DataFormat_Range.k16G);
         // create the gyro object
         this.gyro = new Gyro(RobotMap.DEFAULT_ANNALOG_SLOT, RobotMap.ANALOG_CHANNEL_GYRO);
->>>>>>> local
-
     }
 
     public static Drive getInstance() {
@@ -79,13 +57,7 @@ public class Drive extends Subsystem {
         double x = -joystick.getX();
         double y = joystick.getY();
         double rot = joystick.getZ();
-<<<<<<< master
- //       this.robotDrive.mecanumDrive_Cartesian(x, y, rot, 0.0);
-        //System.out.println(this.accelerometer.getAcceleration(ADXL345_I2C.Axes.kY));
-
-=======
         this.robotDrive.mecanumDrive_Cartesian(x, y, rot, 0.0);
->>>>>>> local
     }
 
     public void balance() {

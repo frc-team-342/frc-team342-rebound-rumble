@@ -25,12 +25,6 @@ public class OI {
         balance.whileHeld(new GyroBalanceCommand());
         balance.whenReleased(new DriveWithJoystick());
         
-<<<<<<< master
-        resetGyro.whileHeld(new ResetGyroCommand());
-        resetGyro.whenReleased(new DriveWithJoystick());
-        
-=======
->>>>>>> local
         throwerForward.whenPressed(new FlyWheelForwardCommand());
         throwerForward.whenReleased(new FlyWheelStopCommand());
         

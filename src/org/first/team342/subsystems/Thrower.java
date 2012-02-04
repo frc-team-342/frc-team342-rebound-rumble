@@ -5,10 +5,7 @@
 package org.first.team342.subsystems;
 
 import edu.wpi.first.wpilibj.CANJaguar;
-<<<<<<< master
-=======
 import edu.wpi.first.wpilibj.Preferences;
->>>>>>> local
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -24,34 +21,21 @@ public class Thrower extends Subsystem {
 
     private static final Thrower INSTANCE = new Thrower();
     private CANJaguar throwerMotor;
-<<<<<<< master
-    public static final double DEFAULT_THROWER_SPEED_FORWARD = 1000;
-    public static final double DEFAULT_THROWER_SPEED_REVERSE = -1000;
-    
-=======
+
     // TODO: need to redefine these values.
     public static final double DEFAULT_THROWER_SPEED_FORWARD = 0.25;
     // TODO: need to redefine these values.
     public static final double DEFAULT_THROWER_SPEED_REVERSE = -0.25;
 
->>>>>>> local
     private Thrower() {
         try {
 
             this.throwerMotor = new CANJaguar(RobotMap.CAN_DEVICE_THROWER_MOTOR);
             this.throwerMotor.changeControlMode(CANJaguar.ControlMode.kSpeed);
-<<<<<<< master
-            this.throwerMotor.setPID(.390, 0.175, 0);
-            this.throwerMotor.configEncoderCodesPerRev(360);
-            this.throwerMotor.setSpeedReference(CANJaguar.SpeedReference.kEncoder);
-            this.throwerMotor.enableControl();
-            //this.throwerMotor.setX(1000);
-=======
             this.updatePID();
             this.throwerMotor.configEncoderCodesPerRev(360);
             this.throwerMotor.setSpeedReference(CANJaguar.SpeedReference.kEncoder);
             this.throwerMotor.enableControl();
->>>>>>> local
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
