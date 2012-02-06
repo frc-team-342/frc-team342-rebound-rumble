@@ -22,22 +22,6 @@ public class Thrower extends Subsystem {
     private static final Thrower INSTANCE = new Thrower();
     private CANJaguar throwerMotor;
 
-    // TODO: need to redefine these values.
-    public static final double DEFAULT_THROWER_SPEED_FORWARD = 0.25;
-    // TODO: need to redefine these values.
-    public static final double DEFAULT_THROWER_SPEED_REVERSE = -0.25;
-    
-//    private Thrower() {
-//        try {
-//            this.throwerMotor = new CANJaguar(RobotMap.CAN_DEVICE_THROWER_MOTOR);
-//        } catch (CANTimeoutException ex) {
-//            ex.printStackTrace();
-//        }
-//    }
-    
-//    public static Thrower getInstance() {
-//        return INSTANCE;
-//    }
     
 
     private Thrower() {
