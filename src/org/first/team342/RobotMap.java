@@ -32,5 +32,8 @@ public class RobotMap {
     
     //Digital contstants
     public static final int DIO_CHANNEL_RAMP_SWITCH = 1;
+    public static final int DIO_CHANNEL_GROUND_FLOOR = 2;
+    public static final int DIO_CHANNEL_MIDDLE_FLOOR = 3;
+    public static final int DIO_CHANNEL_TOP_FLOOR = 4;
     
 }
