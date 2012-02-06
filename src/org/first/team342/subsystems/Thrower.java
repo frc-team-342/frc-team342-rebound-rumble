@@ -42,10 +42,6 @@ public class Thrower extends Subsystem {
         return INSTANCE;
     }
 
-    public void throwForward() {
-        this.throwForward(DEFAULT_THROWER_SPEED_FORWARD);
-    }
-
     public void throwForward(double value) {
         try {
             this.throwerMotor.setX(value);
@@ -54,9 +50,6 @@ public class Thrower extends Subsystem {
         }
     }
 
-    public void throwReverse() {
-        this.throwReverse(DEFAULT_THROWER_SPEED_REVERSE);
-    }
 
     public void throwReverse(double value) {
         try {
