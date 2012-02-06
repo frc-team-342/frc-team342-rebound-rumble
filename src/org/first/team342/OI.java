@@ -1,15 +1,16 @@
 package org.first.team342;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.SerialPort.StopBits;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.first.team342.commands.conveyor.ConveyorOffCommand;
+import org.first.team342.commands.conveyor.ConveyorReverseCommand;
+import org.first.team342.commands.conveyor.ConveyorToggleCommand;
 import org.first.team342.commands.drive.DriveWithJoystick;
 import org.first.team342.commands.drive.GyroBalanceCommand;
-//import org.first.team342.commands.drive.ResetGyroCommand;
+import org.first.team342.commands.ramp.RampDownCommand;
+import org.first.team342.commands.ramp.RampUpCommand;
 import org.first.team342.commands.thrower.FlyWheelForwardCommand;
-import org.first.team342.commands.thrower.FlyWheelReverseCommand;
 import org.first.team342.commands.thrower.FlyWheelStopCommand;
-import org.first.team342.subsystems.Drive;
 
 public class OI {
 
@@ -20,30 +21,25 @@ public class OI {
     private OI() {
         this.driveController = new Joystick(RobotMap.JOYSTICK_DRIVE_CONTROL);
         
-        JoystickButton throwerForward = new JoystickButton(driveController, 1);
-        JoystickButton throwerReverse = new JoystickButton(driveController, 2);
-
-        JoystickButton balanceOne = new JoystickButton(driveController, 3);
-        JoystickButton balanceTwo = new JoystickButton(driveController, 4);
-
-        JoystickButton resetGyro = new JoystickButton(driveController, 10);
+        JoystickButton fire = new JoystickButton(driveController, 6);
+        JoystickButton conveyorToggle = new JoystickButton(driveController, 3);
+        JoystickButton conveyorReverse = new JoystickButton(driveController, 1);
+        JoystickButton balance = new JoystickButton(driveController, 10);
+        JoystickButton ramp = new JoystickButton(driveController, 4);
         
-        balanceOne.whileHeld(new GyroBalanceCommand(1.0));
-        balanceOne.whenReleased(new DriveWithJoystick());
+        fire.whileHeld(new FlyWheelForwardCommand());
+        fire.whenReleased(new FlyWheelStopCommand());
         
-        balanceTwo.whileHeld(new GyroBalanceCommand(2.0));
-        balanceTwo.whenReleased(new DriveWithJoystick());
+        ramp.whileHeld(new RampDownCommand());
+        ramp.whenReleased(new RampUpCommand());
         
-//        resetGyro.whileHeld(new ResetGyroCommand());
-        resetGyro.whenReleased(new DriveWithJoystick());
+        conveyorToggle.whenPressed(new ConveyorToggleCommand());
         
-        throwerForward.whileHeld(new FlyWheelForwardCommand());
-        throwerForward.whenReleased(new FlyWheelStopCommand());
+        conveyorReverse.whileHeld(new ConveyorReverseCommand());
+        conveyorReverse.whenReleased(new ConveyorOffCommand());
         
-        throwerReverse.whileHeld(new FlyWheelReverseCommand());
-        throwerReverse.whenReleased(new FlyWheelStopCommand());
-        
-        
+        balance.whileHeld(new GyroBalanceCommand());
+        balance.whenReleased(new DriveWithJoystick());
     }
 
     public static OI getInstance() {
