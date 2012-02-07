@@ -12,10 +12,10 @@ import org.first.team342.subsystems.Thrower;
  *
  * @author Team 342
  */
-public class FlyWheelForwardCommand extends CommandBase {
+public class FlywheelForwardCommand extends CommandBase {
     private Thrower thrower;
     
-    public FlyWheelForwardCommand() {
+    public FlywheelForwardCommand() {
         this.thrower = Thrower.getInstance();    
         requires(this.thrower);
     }

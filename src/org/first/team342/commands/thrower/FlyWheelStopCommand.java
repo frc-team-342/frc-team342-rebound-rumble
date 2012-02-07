@@ -11,11 +11,11 @@ import org.first.team342.subsystems.Thrower;
  *
  * @author abrightwell
  */
-public class FlyWheelStopCommand extends CommandBase {
+public class FlywheelStopCommand extends CommandBase {
     
     private Thrower thrower;
     
-    public FlyWheelStopCommand() {
+    public FlywheelStopCommand() {
 //        this.thrower = Thrower.getInstance();
         requires(this.thrower);
     }

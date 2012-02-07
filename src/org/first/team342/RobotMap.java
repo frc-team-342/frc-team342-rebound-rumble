@@ -35,5 +35,6 @@ public class RobotMap {
     public static final int DIO_CHANNEL_GROUND_FLOOR = 2;
     public static final int DIO_CHANNEL_MIDDLE_FLOOR = 3;
     public static final int DIO_CHANNEL_TOP_FLOOR = 4;
+    public static final int DIO_CHANNEL_SHOOTING_FLOOR = 5;
     
 }
