@@ -58,7 +58,7 @@ public class Elevator extends Subsystem {
      * Move the elevator up one floor.
      */
     public void up() {
-        if (this.currentPosition >= this.floors.length) {
+        if (this.currentPosition + 1 >= this.floors.length - 1) {
             this.currentPosition = 0;
         } else {
             this.currentPosition++;
@@ -69,14 +69,15 @@ public class Elevator extends Subsystem {
      * Move the elevator down one floor.
      */
     public void down() {
-        if (this.currentPosition <= 0) {
+        if (this.currentPosition - 1 <= 0) {
             this.currentPosition = 0;
         } else {
             this.currentPosition--;
             this.targetFloor = floors[currentPosition];
         }
     }
-    public void toBottom(){
+
+    public void toBottom() {
         this.currentPosition = 0;
     }
 
@@ -87,13 +88,13 @@ public class Elevator extends Subsystem {
                 this.elevatorMotor.set(1.0);
             } else if (currentPosition > lastPosition) {
                 this.elevatorMotor.set(-1.0);
-            }else{
+            } else {
                 this.elevatorMotor.set(0.0);
             }
         } else {
             this.elevatorMotor.set(0.0);
             this.currentPosition = this.lastPosition;
-            done =true;
+            done = true;
         }
         return done;
     }
