@@ -2,22 +2,21 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.first.team342.commands.thrower;
+package org.first.team342.commands.conveyor;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import org.first.team342.commands.CommandBase;
-import org.first.team342.subsystems.Thrower;
+import org.first.team342.subsystems.Conveyor;
 
 /**
  *
  * @author Team 342
  */
-public class FlywheelForwardCommand extends CommandBase {
-    private Thrower thrower;
+public class ConveyorToggleCommand extends CommandBase {
+    Conveyor conveyor;
     
-    public FlywheelForwardCommand() {
-        this.thrower = Thrower.getInstance();    
-        requires(this.thrower);
+    public ConveyorToggleCommand() {
+        this.conveyor = conveyor.getInstance();
+        requires(conveyor);
     }
 
     // Called just before this Command runs the first time
@@ -26,9 +25,7 @@ public class FlywheelForwardCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        DriverStation driverStation = DriverStation.getInstance();
-        double value = driverStation.getAnalogIn(1) * 600;
-        this.thrower.throwForward(value);
+        conveyor.conveyorToggle();
     }
 
     // Make this return true when this Command no longer needs to run execute()

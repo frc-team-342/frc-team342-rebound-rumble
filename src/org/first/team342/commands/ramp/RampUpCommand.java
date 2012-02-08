@@ -2,22 +2,20 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.first.team342.commands.thrower;
+package org.first.team342.commands.ramp;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import org.first.team342.commands.CommandBase;
-import org.first.team342.subsystems.Thrower;
+import org.first.team342.subsystems.Ramp;
 
 /**
  *
  * @author Team 342
  */
-public class FlywheelForwardCommand extends CommandBase {
-    private Thrower thrower;
+public class RampUpCommand extends CommandBase {
+    private Ramp ramp = Ramp.getInstance();
     
-    public FlywheelForwardCommand() {
-        this.thrower = Thrower.getInstance();    
-        requires(this.thrower);
+    public RampUpCommand() {
+        requires(ramp);
     }
 
     // Called just before this Command runs the first time
@@ -26,18 +24,17 @@ public class FlywheelForwardCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        DriverStation driverStation = DriverStation.getInstance();
-        double value = driverStation.getAnalogIn(1) * 600;
-        this.thrower.throwForward(value);
+        ramp.rampUp();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return ramp.getLimitSwitch();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        ramp.rampStop();
     }
 
     // Called when another command which requires one or more of the same
