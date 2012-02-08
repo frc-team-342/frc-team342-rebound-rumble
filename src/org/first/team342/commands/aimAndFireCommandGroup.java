@@ -5,8 +5,8 @@
 package org.first.team342.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import org.first.team342.commands.elvator.moveToBottomCommand;
-import org.first.team342.commands.elvator.moveUpCommand;
+import org.first.team342.commands.elevator.moveToBottomCommand;
+import org.first.team342.commands.elevator.moveUpCommand;
 
 /**
  *

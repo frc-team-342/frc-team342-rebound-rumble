@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.first.team342.commands.elvator;
+package org.first.team342.commands.elevator;
 
 import org.first.team342.commands.CommandBase;
 import org.first.team342.subsystems.Elevator;
@@ -11,19 +11,19 @@ import org.first.team342.subsystems.Elevator;
  *
  * @author Team 342
  */
-public class moveDownCommand extends CommandBase {
-    Elevator elevator;
+public class moveUpCommand extends CommandBase {
+    private Elevator elevator;
     private boolean done;
     
-    public moveDownCommand() {
+    public moveUpCommand() {
         this.elevator = Elevator.getInstance();
         requires(this.elevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        this.elevator.down();
-        
+        this.elevator.up();
+        this.done = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
