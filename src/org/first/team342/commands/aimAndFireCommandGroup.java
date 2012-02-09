@@ -5,20 +5,19 @@
 package org.first.team342.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import org.first.team342.commands.elvator.moveToBottomCommand;
-import org.first.team342.commands.elvator.moveUpCommand;
+import org.first.team342.commands.elevator.MoveUpCommand;
 
 /**
  *
  * @author Team 342
  */
-public class aimAndFireCommandGroup extends CommandGroup {
+public class AimAndFireCommandGroup extends CommandGroup {
     
-    public aimAndFireCommandGroup() {
-        addSequential(new moveToBottomCommand());
-        addSequential(new moveUpCommand());
-        addSequential(new moveUpCommand());
-        addSequential(new moveUpCommand());
+    public AimAndFireCommandGroup() {
+        addSequential(new MoveToBottomCommand());
+        addSequential(new MoveUpCommand());
+        addSequential(new MoveUpCommand());
+        addSequential(new MoveUpCommand());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
