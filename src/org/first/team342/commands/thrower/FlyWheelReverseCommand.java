@@ -17,7 +17,7 @@ public class FlywheelReverseCommand extends CommandBase {
     private Thrower thrower;
     
     public FlywheelReverseCommand() {
-//        this.thrower = Thrower.getInstance();
+        this.thrower = Thrower.getInstance();
         requires(this.thrower);
     }
 
