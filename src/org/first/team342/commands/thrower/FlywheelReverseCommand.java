@@ -12,11 +12,12 @@ import org.first.team342.subsystems.Thrower;
  *
  * @author Team 342
  */
-public class FlyWheelForwardCommand extends CommandBase {
+public class FlywheelReverseCommand extends CommandBase {
+    
     private Thrower thrower;
     
-    public FlyWheelForwardCommand() {
-        this.thrower = Thrower.getInstance();    
+    public FlywheelReverseCommand() {
+        this.thrower = Thrower.getInstance();
         requires(this.thrower);
     }
 
@@ -27,8 +28,8 @@ public class FlyWheelForwardCommand extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         DriverStation driverStation = DriverStation.getInstance();
-        double value = driverStation.getAnalogIn(1) * 600;
-        this.thrower.throwForward(value);
+        double value = 0.0 - driverStation.getAnalogIn(1) * 600;
+        this.thrower.throwReverse(value);
     }
 
     // Make this return true when this Command no longer needs to run execute()

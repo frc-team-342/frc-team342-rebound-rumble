@@ -9,8 +9,8 @@ import org.first.team342.commands.drive.DriveWithJoystick;
 import org.first.team342.commands.drive.GyroBalanceCommand;
 import org.first.team342.commands.ramp.RampDownCommand;
 import org.first.team342.commands.ramp.RampUpCommand;
-import org.first.team342.commands.thrower.FlyWheelForwardCommand;
-import org.first.team342.commands.thrower.FlyWheelStopCommand;
+import org.first.team342.commands.thrower.FlywheelForwardCommand;
+import org.first.team342.commands.thrower.FlywheelStopCommand;
 
 public class OI {
 
@@ -27,8 +27,8 @@ public class OI {
         JoystickButton balance = new JoystickButton(driveController, 10);
         JoystickButton ramp = new JoystickButton(driveController, 4);
         
-        fire.whileHeld(new FlyWheelForwardCommand());
-        fire.whenReleased(new FlyWheelStopCommand());
+        fire.whileHeld(new FlywheelForwardCommand());
+        fire.whenReleased(new FlywheelStopCommand());
         
         ramp.whileHeld(new RampDownCommand());
         ramp.whenReleased(new RampUpCommand());
