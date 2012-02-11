@@ -100,6 +100,14 @@ public class Elevator extends Subsystem {
             this.elevatorMotor.set(-1.0);
         }
     }
+    
+    public void simpleUp() {
+        this.elevatorMotor.set(1.0);
+    }
+    
+    public void simpleDown() {
+        this.elevatorMotor.set(-1.0);
+    }
 
     /**
      * Stop the elevator motor.

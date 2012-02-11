@@ -39,7 +39,7 @@ public class Drive extends Subsystem {
 
 
         this.robotDrive = new RobotDrive(leftFront, leftRear, rightFront, rightRear);
-        this.robotDrive.setSafetyEnabled(false);
+//        this.robotDrive.setSafetyEnabled(false);
         this.robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
         this.robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 

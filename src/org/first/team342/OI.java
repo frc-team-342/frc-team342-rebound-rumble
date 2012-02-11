@@ -7,6 +7,9 @@ import org.first.team342.commands.conveyor.ConveyorReverseCommand;
 import org.first.team342.commands.conveyor.ConveyorToggleCommand;
 import org.first.team342.commands.drive.DriveWithJoystick;
 import org.first.team342.commands.drive.GyroBalanceCommand;
+import org.first.team342.commands.elevator.SimpleDownCommand;
+import org.first.team342.commands.elevator.SimpleStopCommand;
+import org.first.team342.commands.elevator.SimpleUpCommand;
 import org.first.team342.commands.ramp.RampDownCommand;
 import org.first.team342.commands.ramp.RampUpCommand;
 import org.first.team342.commands.thrower.FlywheelForwardCommand;
@@ -26,6 +29,14 @@ public class OI {
         JoystickButton conveyorReverse = new JoystickButton(driveController, 1);
         JoystickButton balance = new JoystickButton(driveController, 10);
         JoystickButton ramp = new JoystickButton(driveController, 4);
+        JoystickButton elevatorUp = new JoystickButton(driveController, 5);
+        JoystickButton elevatorDown = new JoystickButton(driveController, 7);
+        
+        elevatorUp.whileHeld(new SimpleUpCommand());
+        elevatorDown.whenReleased(new SimpleStopCommand());
+        
+        elevatorDown.whileHeld(new SimpleDownCommand());
+        elevatorDown.whenReleased(new SimpleStopCommand());
         
         fire.whileHeld(new FlywheelForwardCommand());
         fire.whenReleased(new FlywheelStopCommand());
