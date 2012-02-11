@@ -14,9 +14,10 @@ import org.first.team342.subsystems.Thrower;
 public class FlywheelStopCommand extends CommandBase {
     
     private Thrower thrower;
+    private boolean finished =  false;
     
     public FlywheelStopCommand() {
-//        this.thrower = Thrower.getInstance();
+        this.thrower = Thrower.getInstance();
         requires(this.thrower);
     }
 
@@ -27,11 +28,15 @@ public class FlywheelStopCommand extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         this.thrower.stop();
-        this.setFinished(true);
+        finished = true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    }
+    
+    protected boolean isfinished() {
+        return finished;
     }
 
     // Called when another command which requires one or more of the same

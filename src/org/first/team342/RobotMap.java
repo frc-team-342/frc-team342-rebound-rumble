@@ -19,7 +19,8 @@ public class RobotMap {
     public static final int PWM_CHANNEL_RAMP = 7;
     
     // CAN device constants.
-    public static final int CAN_DEVICE_THROWER_MOTOR = 4;
+    public static final int CAN_DEVICE_THROWER_MOTOR_MASTER = 4;
+    public static final int CAN_DEVICE_THROWER_MOTOR_SLAVE = 3;
     
     //Joystick ports.
     public static final int JOYSTICK_DRIVE_CONTROL = 1;
