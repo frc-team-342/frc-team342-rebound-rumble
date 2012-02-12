@@ -11,43 +11,87 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import org.first.team342.RobotMap;
 
 /**
- *
- * @author Team 342
+ * This subsystem is the system to controls the lever that pushes down the ramps
+ * in order to cross the field.
+ * 
+ * @author FIRST Team 342
  */
 public class Ramp extends Subsystem {
-    private static Ramp INSTANCE = new Ramp();
+
+    /**
+     * The constant value for the default speed of the lever moving up.
+     */
+    public static final double DEFAULT_SPEED_UP = -0.25;
     
+    /**
+     * The constant value for the default speed of the lever moving down.
+     */
+    public static final double DEFAULT_SPEED_DOWN = 0.75;
+    
+    /**
+     * Singleton instance.
+     */
+    private static final Ramp INSTANCE = new Ramp();
+    
+    /**
+     * The speed controller to used to control the lever.
+     */
     private SpeedController rampMotor;
+    
+    /**
+     * The limit switch that will indicate that the lever has reached the fully
+     * retracted position.
+     */
     private DigitalInput limitSwitch;
 
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    }
-    
+    /**
+     * Creates a new instance.  Initializes all properties.
+     */
     private Ramp() {
         this.rampMotor = new Victor(RobotMap.PWM_CHANNEL_RAMP);
         this.limitSwitch = new DigitalInput(RobotMap.DIO_CHANNEL_RAMP_SWITCH);
     }
-    
+
+    /**
+     * Returns the ramp instance for the robot.
+     * @return the ramp instance for the robot.
+     */
     public static Ramp getInstance() {
         return INSTANCE;
     }
-    
-    public void rampDown() {
-        this.rampMotor.set(0.75);
+
+    /**
+     * Rotates the lever down.
+     */
+    public void down() {
+        this.rampMotor.set(DEFAULT_SPEED_DOWN);
     }
-    
-    public void rampUp() {
-        this.rampMotor.set(-0.25);
+
+    /**
+     * Rotates the lever up.
+     */
+    public void up() {
+        this.rampMotor.set(DEFAULT_SPEED_UP);
     }
-    
-    public void rampStop() {
+
+    /**
+     * Stops the rotation of the lever.
+     */
+    public void stop() {
         this.rampMotor.set(0.0);
     }
-    
-    public boolean getLimitSwitch() {
-        return limitSwitch.get();
+
+    /**
+     * Returns whether or not the lever has been fully retracted.
+     * @return whether or not the lever has been fully retracted.
+     */
+    public boolean isLeverRetracted() {
+        return this.limitSwitch.get();
     }
     
+    /**
+     * {@inheritDoc}
+     */
+    public void initDefaultCommand() {
+    }
 }

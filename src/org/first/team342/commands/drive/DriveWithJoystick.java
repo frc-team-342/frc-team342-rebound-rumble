@@ -11,7 +11,7 @@ import org.first.team342.subsystems.Drive;
 
 /**
  *
- * @author Team 342
+ * @author FIRST Team 342
  */
 public class DriveWithJoystick extends CommandBase {
     private Drive drive = Drive.getInstance();

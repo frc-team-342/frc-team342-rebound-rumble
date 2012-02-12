@@ -8,11 +8,12 @@ import org.first.team342.commands.elevator.ResetElevatorCommand;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.first.team342.RobotMap;
 
 /**
  *
- * @author abrightwell
+ * @author FIRST Team 342
  */
 public class Elevator extends Subsystem {
 
@@ -62,13 +63,13 @@ public class Elevator extends Subsystem {
     private Elevator() {
         this.elevatorMotor = new Victor(RobotMap.PWM_CHANNEL_ELEVATOR);
 
-        this.floors = new DigitalInput[5];
+        this.floors = new DigitalInput[4];
 
         this.floors[GROUND_FLOOR] = new DigitalInput(RobotMap.DIO_CHANNEL_GROUND_FLOOR);
         this.floors[MIDDLE_FLOOR] = new DigitalInput(RobotMap.DIO_CHANNEL_MIDDLE_FLOOR);
         this.floors[TOP_FLOOR] = new DigitalInput(RobotMap.DIO_CHANNEL_TOP_FLOOR);
         this.floors[SHOOTER_FLOOR] = new DigitalInput(RobotMap.DIO_CHANNEL_SHOOTING_FLOOR);
-        this.floors[UNKNOWN_FLOOR] = null;
+        //this.floors[UNKNOWN_FLOOR] = null;
     }
 
     /**
@@ -126,6 +127,13 @@ public class Elevator extends Subsystem {
     }
 
     public void initDefaultCommand() {
-        this.setDefaultCommand(new ResetElevatorCommand());
+        //this.setDefaultCommand(new ResetElevatorCommand());
+    }
+    
+    public void updateStatus() {
+        SmartDashboard.putBoolean("Ground Floor Sensor:", this.floors[GROUND_FLOOR].get());
+        SmartDashboard.putBoolean("Middle Floor Sensor:", this.floors[MIDDLE_FLOOR].get());
+        SmartDashboard.putBoolean("Top Floor Sensor:", this.floors[TOP_FLOOR].get());
+        SmartDashboard.putBoolean("Shooter Floor Sensor:", this.floors[SHOOTER_FLOOR].get());
     }
 }

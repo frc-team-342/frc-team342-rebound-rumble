@@ -9,7 +9,7 @@ import org.first.team342.subsystems.Conveyor;
 
 /**
  *
- * @author Team 342
+ * @author FIRST Team 342
  */
 public class ConveyorToggleCommand extends CommandBase {
     Conveyor conveyor;

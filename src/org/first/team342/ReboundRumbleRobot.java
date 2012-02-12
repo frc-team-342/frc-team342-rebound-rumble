@@ -7,11 +7,11 @@
 package org.first.team342;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.wpilibj.Watchdog;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.first.team342.commands.drive.DriveWithJoystick;
+import org.first.team342.subsystems.Elevator;
 import org.first.team342.subsystems.Thrower;
 
 /**
@@ -20,18 +20,23 @@ import org.first.team342.subsystems.Thrower;
  * documentation. If you change the name of this class or the package after
  * creating this project, you must also update the manifest file in the resource
  * directory.
+ * 
+ * @author FIRST Team 342
  */
 public class ReboundRumbleRobot extends IterativeRobot {
 
-    Command autonomousCommand;
+    private Command autonomousCommand;
     private Command joystickCommand;
+    private Thrower thrower;
+    private Elevator elevator;
 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
-//        initializationCommand = new InitializeRobot();
+        this.thrower = Thrower.getInstance();
+        this.elevator = Elevator.getInstance();
         joystickCommand = new DriveWithJoystick();
     }
 
@@ -57,10 +62,9 @@ public class ReboundRumbleRobot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-
-        Thrower thrower = Thrower.getInstance();
-
-        thrower.updateStatus();
-        thrower.updatePID();
+        
+        this.thrower.updateStatus();
+        this.thrower.updatePID();
+        this.elevator.updateStatus();
     }
 }

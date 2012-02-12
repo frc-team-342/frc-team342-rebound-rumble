@@ -9,7 +9,7 @@ import org.first.team342.subsystems.Elevator;
 
 /**
  *
- * @author Charlie
+ * @author FIRST Team 342
  */
 public class MoveDownCommand extends CommandBase {
 

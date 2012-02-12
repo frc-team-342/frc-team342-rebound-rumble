@@ -13,7 +13,7 @@ import org.first.team342.subsystems.Thrower;
 
 /**
  *
- * @author Charlie
+ * @author FIRST Team 342
  */
 public class ShootCommandGroup extends CommandGroup {
     

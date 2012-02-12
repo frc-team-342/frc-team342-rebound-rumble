@@ -5,6 +5,8 @@ package org.first.team342;
  * to a variable name. This provides flexibility changing wiring, makes checking
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
+ * 
+ * @author FIRST Team 342
  */
 public class RobotMap {
     
@@ -14,9 +16,9 @@ public class RobotMap {
     public static final int CAN_DEVICE_RIGHT_FRONT_DRIVE_MOTOR = 6;
     public static final int CAN_DEVICE_RIGHT_REAR_DRIVE_MOTOR = 7;
     public static final int CAN_DEVICE_LEFT_REAR_DRIVE_MOTOR = 8;
-    public static final int PWM_CHANNEL_CONVEYOR = 5;
-    public static final int PWM_CHANNEL_ELEVATOR = 6;
-    public static final int PWM_CHANNEL_RAMP = 7;
+    public static final int PWM_CHANNEL_CONVEYOR = 1;
+    public static final int PWM_CHANNEL_ELEVATOR = 2;
+    public static final int PWM_CHANNEL_RAMP = 3;
     
     // CAN device constants.
     public static final int CAN_DEVICE_THROWER_MOTOR = 4;

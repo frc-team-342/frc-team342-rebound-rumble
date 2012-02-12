@@ -10,7 +10,7 @@ import org.first.team342.subsystems.Thrower;
 
 /**
  *
- * @author Team 342
+ * @author FIRST Team 342
  */
 public class FlywheelForwardCommand extends CommandBase {
     private Thrower thrower;

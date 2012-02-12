@@ -1,44 +1,64 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.first.team342.commands.ramp;
 
 import org.first.team342.commands.CommandBase;
 import org.first.team342.subsystems.Ramp;
 
 /**
- *
- * @author Team 342
+ * This command will move the ramp mechanism's lever upwards until it has reached
+ * the fully retracted state.
+ * 
+ * @author FIRST Team 342
  */
 public class RampUpCommand extends CommandBase {
-    private Ramp ramp = Ramp.getInstance();
     
+    /**
+     * The robot's ramp subsystem.
+     */
+    private Ramp ramp;
+    
+    /**
+     * Create a new instance of this command.
+     */
     public RampUpCommand() {
-        requires(ramp);
+        this.ramp = Ramp.getInstance();
+        this.requires(this.ramp);
     }
 
-    // Called just before this Command runs the first time
+    /**
+     * {@inheritDoc}
+     */
     protected void initialize() {
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    /**
+     * Moves the ramp mechanism up.
+     */
     protected void execute() {
-        ramp.rampUp();
+        this.ramp.up();
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    /**
+     * Returns <code>true</code> if the ramp mechanism has reached its retracted
+     * position.  Otherwise, returns <code>false</code>.
+     * 
+     * @return <code>true</code> if the ramp mechanism has reached its retracted
+     * position.  Otherwise, returns <code>false</code>.
+     */
     protected boolean isFinished() {
-        return ramp.getLimitSwitch();
+        return this.ramp.isLeverRetracted();
     }
 
-    // Called once after isFinished returns true
+    /**
+     * Called once {@link RampUpCommand#isFinished()} returns <code>true</code>.
+     * Calling this method will stop the movement of the ramp mechanism.
+     */
     protected void end() {
-        ramp.rampStop();
+        this.ramp.stop();
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+    /**
+     * {@inheritDoc}
+     */
     protected void interrupted() {
     }
 }

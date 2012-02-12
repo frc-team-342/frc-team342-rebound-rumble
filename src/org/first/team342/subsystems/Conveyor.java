@@ -11,7 +11,7 @@ import org.first.team342.RobotMap;
 
 /**
  *
- * @author abrightwell
+ * @author FIRST Team 342
  */
 public class Conveyor extends Subsystem {
     private static final Conveyor INSTANCE = new Conveyor();
@@ -48,7 +48,7 @@ public class Conveyor extends Subsystem {
     }
     
     public void conveyorOn() {
-        conveyorMotor.set(1.0);
+        conveyorMotor.set(-1.0);
         this.isOn = true;
     }
     
@@ -56,7 +56,7 @@ public class Conveyor extends Subsystem {
     
     // TODO: refactor method name to "reverseConveyor"
     public void conveyorReverse() {
-        conveyorMotor.set(-1.0);
+        conveyorMotor.set(1.0);
     }
 
     public boolean isConveyorOn() {

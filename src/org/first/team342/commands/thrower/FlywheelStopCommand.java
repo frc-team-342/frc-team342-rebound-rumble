@@ -9,7 +9,7 @@ import org.first.team342.subsystems.Thrower;
 
 /**
  *
- * @author abrightwell
+ * @author FIRST Team 342
  */
 public class FlywheelStopCommand extends CommandBase {
     

@@ -12,7 +12,7 @@ import org.first.team342.commands.drive.DriveWithJoystick;
 
 /**
  *
- * @author Team 342
+ * @author FIRST Team 342
  */
 public class Drive extends Subsystem {
 

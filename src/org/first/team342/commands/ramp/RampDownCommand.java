@@ -1,43 +1,60 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.first.team342.commands.ramp;
 
 import org.first.team342.commands.CommandBase;
 import org.first.team342.subsystems.Ramp;
 
 /**
- *
- * @author Team 342
+ * This command will move the ramp mechanism's lever downwards.
+ * 
+ * @author FIRST Team 342
  */
 public class RampDownCommand extends CommandBase {
-    private Ramp ramp = Ramp.getInstance();
     
+    /**
+     * The robot's ramp system.
+     */
+    private Ramp ramp;
+    
+    /**
+     * Create a new instance of this command.
+     */
     public RampDownCommand() {
-        requires(ramp);
+        this.ramp = Ramp.getInstance();
+        this.requires(this.ramp);
     }
 
-    // Called just before this Command runs the first time
+    /**
+     * {@inheritDoc}
+     */
     protected void initialize() {
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    /**
+     * Moves the ramp mechanism down.  This method is called repeatedly until 
+     * {@link RampDownCommand#isFinished() returns <code>true</code>.
+     */
     protected void execute() {
-        ramp.rampDown();
+        this.ramp.down();
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    /**
+     * Always returns <code>true</code> since there is no condition to determine
+     * whether or not the command should stop running.
+     * @return always <code>true</code> as 
+     */
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
-    // Called once after isFinished returns true
+    /**
+     * {@inheritDoc}
+     */
     protected void end() {
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+    /**
+     * {@inheritDoc}
+     */
     protected void interrupted() {
     }
 }
