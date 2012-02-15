@@ -25,6 +25,7 @@ public class DriveWithJoystick extends CommandBase {
     protected void initialize() {
         OI oi = OI.getInstance();
         this.joystick = oi.getDriveController();
+        System.out.println("Drive With Jostick started.");
     }
 
     // Called repeatedly when this Command is scheduled to run

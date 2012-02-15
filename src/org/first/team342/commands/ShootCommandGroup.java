@@ -44,12 +44,12 @@ public class ShootCommandGroup extends CommandGroup {
         
         addParallel(new FlywheelForwardCommand());
         
-        int position = elevator.getPosition();
-        if (position >= 3) {
-            addSequential(new MoveUpCommand());
-            addSequential(new MoveDownCommand());
-        } else {
-            addSequential(new MoveUpCommand());
-        }
+//        int position = elevator.getPosition();
+//        if (position >= 3) {
+//            addSequential(new MoveUpCommand());
+//            addSequential(new MoveDownCommand());
+//        } else {
+//            addSequential(new MoveUpCommand());
+//        }
     }
 }

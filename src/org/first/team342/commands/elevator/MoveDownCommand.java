@@ -12,36 +12,44 @@ import org.first.team342.subsystems.Elevator;
  * @author Charlie
  */
 public class MoveDownCommand extends CommandBase {
-    
-    Elevator elevator;
-    
+
+    private Elevator elevator;
+    private int initialFloor;
+    private int targetFloor;
+
     public MoveDownCommand() {
-        elevator = Elevator.getInstance();
-        requires(elevator);
+        this.elevator = Elevator.getInstance();
+        this.requires(this.elevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        elevator.down();
+        this.initialFloor = this.elevator.getCurrentFloor();
+        this.targetFloor = this.initialFloor;
+
+        if (this.initialFloor > Elevator.GROUND_FLOOR) {
+            this.targetFloor = this.initialFloor - 1;
+        }
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        this.elevator.down();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return elevator.isAtTarget();
+        return (this.elevator.getCurrentFloor() == this.targetFloor);
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        elevator.stop();
+        this.elevator.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        elevator.stop();
+        this.elevator.stop();
     }
 }

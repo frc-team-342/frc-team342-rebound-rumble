@@ -14,23 +14,31 @@ import org.first.team342.subsystems.Conveyor;
 public class ConveyorToggleCommand extends CommandBase {
     Conveyor conveyor;
     
+    private boolean conveyorStatus;
+    
     public ConveyorToggleCommand() {
-        this.conveyor = conveyor.getInstance();
+        this.conveyor = Conveyor.getInstance();
         requires(conveyor);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        System.out.println("Toggle Conveyor Initialize");
+        this.conveyorStatus = this.conveyor.isConveyorOn();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        conveyor.conveyorToggle();
+        if (this.conveyorStatus) {
+            this.conveyor.conveyorOff();
+        } else {
+            this.conveyor.conveyorOn();
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

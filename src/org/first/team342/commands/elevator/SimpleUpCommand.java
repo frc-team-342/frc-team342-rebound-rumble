@@ -2,21 +2,23 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.first.team342.commands;
+package org.first.team342.commands.elevator;
 
-import org.first.team342.subsystems.Drive;
+import org.first.team342.commands.CommandBase;
+import org.first.team342.subsystems.Elevator;
 
 /**
  *
- * @author Charlie
+ * @author Team 342
  */
-public class InitializeRobot extends CommandBase {
-    private Drive drive = Drive.getInstance();
+public class SimpleUpCommand extends CommandBase {
+    private Elevator elevator;
     
-    public InitializeRobot() {
+    public SimpleUpCommand() {
+        elevator = Elevator.getInstance();
+        requires(elevator);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(drive);
     }
 
     // Called just before this Command runs the first time
@@ -25,7 +27,7 @@ public class InitializeRobot extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
+        elevator.simpleUp();
     }
 
     // Make this return true when this Command no longer needs to run execute()

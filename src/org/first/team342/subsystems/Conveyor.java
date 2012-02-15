@@ -15,6 +15,8 @@ import org.first.team342.RobotMap;
  */
 public class Conveyor extends Subsystem {
     private static final Conveyor INSTANCE = new Conveyor();
+    
+    // TODO: refactor this variable to "conveyorOn".
     private boolean isOn;
     
     private SpeedController conveyorMotor;
@@ -28,24 +30,39 @@ public class Conveyor extends Subsystem {
         return INSTANCE;
     }
     
-    public void conveyorToggle() {
-        if(isOn) {
-            this.conveyorOff();
-        } else {
-            conveyorMotor.set(1.0);
-            isOn = true;
-        }
-    }
+//    public void conveyorToggle() {
+//        if(isOn) {
+//            this.conveyorOff();
+//        } else {
+//            // refactor these lines in to a method called "turnConveyorOn".
+//            conveyorMotor.set(1.0);
+//            this.isOn = true;
+//        }
+//    }
     
+    
+    //TODO: refactor method name to "turnConveyorOff"
     public void conveyorOff() {
         conveyorMotor.set(0.0);
-        isOn = false;
+        this.isOn = false;
     }
     
+    public void conveyorOn() {
+        conveyorMotor.set(1.0);
+        this.isOn = true;
+    }
+    
+    // TODO: add method "turnConveyorOn"
+    
+    // TODO: refactor method name to "reverseConveyor"
     public void conveyorReverse() {
         conveyorMotor.set(-1.0);
     }
 
+    public boolean isConveyorOn() {
+        return this.isOn;
+    }
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

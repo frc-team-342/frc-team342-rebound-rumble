@@ -1,18 +1,19 @@
 /*
-* To change this template, choose Tools | Templates
-* and open the template in the editor.
-*/
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.first.team342.subsystems;
 
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.first.team342.RobotMap;
 import org.first.team342.commands.drive.DriveWithJoystick;
 
 /**
-*
-* @author Team 342
-*/
+ *
+ * @author Team 342
+ */
 public class Drive extends Subsystem {
 
     private static final Drive INSTANCE = new Drive();
@@ -27,14 +28,18 @@ public class Drive extends Subsystem {
     private Gyro gyro;
 
     private Drive() {
-        this.leftFront = new Jaguar(RobotMap.PWM_CHANNEL_LEFT_FRONT);
-        this.rightFront = new Jaguar(RobotMap.PWM_CHANNEL_RIGHT_FRONT);
-        this.leftRear = new Jaguar(RobotMap.PWM_CHANNEL_LEFT_REAR);
-        this.rightRear = new Jaguar(RobotMap.PWM_CHANNEL_RIGHT_REAR);
+        try {
+            this.leftFront = new CANJaguar(RobotMap.CAN_DEVICE_LEFT_FRONT_DRIVE_MOTOR);
+            this.rightFront = new CANJaguar(RobotMap.CAN_DEVICE_RIGHT_FRONT_DRIVE_MOTOR);
+            this.leftRear = new CANJaguar(RobotMap.CAN_DEVICE_LEFT_REAR_DRIVE_MOTOR);
+            this.rightRear = new CANJaguar(RobotMap.CAN_DEVICE_RIGHT_REAR_DRIVE_MOTOR);
+        } catch (CANTimeoutException e) {
+            e.printStackTrace();
+        }
 
 
         this.robotDrive = new RobotDrive(leftFront, leftRear, rightFront, rightRear);
-        this.robotDrive.setSafetyEnabled(false);
+//        this.robotDrive.setSafetyEnabled(false);
         this.robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
         this.robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 
