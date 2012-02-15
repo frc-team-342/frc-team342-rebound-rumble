@@ -20,19 +20,22 @@ public class Thrower extends Subsystem {
     // here. Call these from Commands.
 
     private static final Thrower INSTANCE = new Thrower();
-    private CANJaguar throwerMotor;
+    private CANJaguar throwerMotorMaster;
+    private CANJaguar throwerMotorSlave;
 
     
 
     private Thrower() {
         try {
 
-            this.throwerMotor = new CANJaguar(RobotMap.CAN_DEVICE_THROWER_MOTOR);
-            this.throwerMotor.changeControlMode(CANJaguar.ControlMode.kSpeed);
+            this.throwerMotorMaster = new CANJaguar(RobotMap.CAN_DEVICE_THROWER_MOTOR_MASTER);
+            this.throwerMotorSlave = new CANJaguar(RobotMap.CAN_DEVICE_THROWER_MOTOR_SLAVE);
+            this.throwerMotorMaster.changeControlMode(CANJaguar.ControlMode.kSpeed);
+            this.throwerMotorSlave.changeControlMode(CANJaguar.ControlMode.kVoltage);
             this.updatePID();
-            this.throwerMotor.configEncoderCodesPerRev(360);
-            this.throwerMotor.setSpeedReference(CANJaguar.SpeedReference.kEncoder);
-            this.throwerMotor.enableControl();
+            this.throwerMotorMaster.configEncoderCodesPerRev(360);
+            this.throwerMotorMaster.setSpeedReference(CANJaguar.SpeedReference.kEncoder);
+            this.throwerMotorMaster.enableControl();
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
@@ -44,7 +47,8 @@ public class Thrower extends Subsystem {
 
     public void throwForward(double value) {
         try {
-            this.throwerMotor.setX(value);
+            this.throwerMotorMaster.setX(value);
+            this.throwerMotorSlave.setX(this.throwerMotorMaster.getOutputVoltage());
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
@@ -52,7 +56,8 @@ public class Thrower extends Subsystem {
 
     public void throwReverse(double value) {
         try {
-            this.throwerMotor.setX(value);
+            this.throwerMotorMaster.setX(value);
+            this.throwerMotorSlave.setX(this.throwerMotorMaster.getOutputVoltage());
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
@@ -60,7 +65,8 @@ public class Thrower extends Subsystem {
 
     public void stop() {
         try {
-            this.throwerMotor.setX(0.0);
+            this.throwerMotorMaster.setX(0.0);
+            this.throwerMotorSlave.setX(0.0);
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
@@ -76,7 +82,7 @@ public class Thrower extends Subsystem {
         double derivativeGain = preferences.getDouble("Thrower_Derivative", 0.0);
         
         try {
-            this.throwerMotor.setPID(proportionalGain, integralGain, derivativeGain);
+            this.throwerMotorMaster.setPID(proportionalGain, integralGain, derivativeGain);
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
@@ -84,7 +90,7 @@ public class Thrower extends Subsystem {
 
     public void updateStatus() {
         try {
-            SmartDashboard.putDouble("Shooter Speed: ", this.throwerMotor.getSpeed());
+            SmartDashboard.putDouble("Shooter Speed: ", this.throwerMotorMaster.getSpeed());
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
@@ -93,7 +99,7 @@ public class Thrower extends Subsystem {
     public double getSpeed() {
         double value = 0.0;
         try {
-            value = this.throwerMotor.getSpeed();
+            value = this.throwerMotorMaster.getSpeed();
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }

@@ -86,7 +86,7 @@ public class Elevator extends Subsystem {
     public void up() {
         int currentFloor = this.getCurrentFloor();
         if (currentFloor != SHOOTER_FLOOR) {
-            this.elevatorMotor.set(1.0);
+            this.elevatorMotor.set(-1.0);
         } else {
             this.stop();
         }
@@ -98,7 +98,7 @@ public class Elevator extends Subsystem {
     public void down() {
         int currentFloor = this.getCurrentFloor();
         if (currentFloor != GROUND_FLOOR) {
-            this.elevatorMotor.set(-1.0);
+            this.elevatorMotor.set(1.0);
         }
     }
 

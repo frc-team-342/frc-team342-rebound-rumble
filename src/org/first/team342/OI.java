@@ -11,7 +11,7 @@ import org.first.team342.commands.elevator.MoveDownCommand;
 import org.first.team342.commands.elevator.MoveUpCommand;
 import org.first.team342.commands.ramp.RampDownCommand;
 import org.first.team342.commands.ramp.RampUpCommand;
-import org.first.team342.commands.thrower.FlywheelForwardCommand;
+import org.first.team342.commands.thrower.FlywheelReverseCommand;
 import org.first.team342.commands.thrower.FlywheelStopCommand;
 
 /**
@@ -35,7 +35,7 @@ public class OI {
         JoystickButton elevatorUp = new JoystickButton(driveController, 8);
         JoystickButton elevatorDown = new JoystickButton(driveController, 7);
         
-        fire.whileHeld(new FlywheelForwardCommand());
+        fire.whileHeld(new FlywheelReverseCommand());
         fire.whenReleased(new FlywheelStopCommand());
         
         ramp.whileHeld(new RampDownCommand());
