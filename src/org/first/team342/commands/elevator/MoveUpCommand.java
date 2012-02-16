@@ -30,6 +30,7 @@ public class MoveUpCommand extends CommandBase {
         if (initialFloor < Elevator.SHOOTER_FLOOR) {
             this.targetFloor = this.initialFloor + 1;
         }
+        System.out.println("target =\t" + targetFloor);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -45,6 +46,8 @@ public class MoveUpCommand extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
         this.elevator.stop();
+        System.out.println("Reached destination:\t" + this.targetFloor);
+        this.elevator.setCurrentFloor(this.targetFloor);
     }
 
     // Called when another command which requires one or more of the same

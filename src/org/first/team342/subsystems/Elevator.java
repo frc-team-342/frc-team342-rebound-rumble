@@ -21,41 +21,35 @@ public class Elevator extends Subsystem {
      * The singleton instance of the Elevator.
      */
     private static final Elevator INSTANCE = new Elevator();
-    
     /**
      * The constant that represents the ground floor.
      */
     public static final int GROUND_FLOOR = 0;
-    
     /**
      * The constant that represents the middle floor.
      */
     public static final int MIDDLE_FLOOR = 1;
-    
     /**
      * The constant that represents the top floor.
      */
     public static final int TOP_FLOOR = 2;
-    
     /**
      * The constant that represents the shooter floor.
      */
     public static final int SHOOTER_FLOOR = 3;
-    
     /**
      * The constant that represents an unknown floor.
      */
     public static final int UNKNOWN_FLOOR = 4;
-    
     /**
      * The speed controller for the elevator motor.
      */
     private Victor elevatorMotor;
-    
     /**
      * The digital input sensors for each floor.  It is indexed based off of the constants for the floors.
      */
     private DigitalInput[] floors;
+    private static int currentFloor = 0;
 
     /**
      * Initialize the elevator.
@@ -114,7 +108,6 @@ public class Elevator extends Subsystem {
      * @return the current floor.
      */
     public int getCurrentFloor() {
-        int currentFloor = UNKNOWN_FLOOR;
 
         for (int floor = GROUND_FLOOR; floor < this.floors.length; floor++) {
             if (this.floors[floor].get()) {
@@ -126,10 +119,14 @@ public class Elevator extends Subsystem {
         return currentFloor;
     }
 
+    public void setCurrentFloor(int floor) {
+        this.currentFloor = floor;
+    }
+
     public void initDefaultCommand() {
         //this.setDefaultCommand(new ResetElevatorCommand());
     }
-    
+
     public void updateStatus() {
         SmartDashboard.putBoolean("Ground Floor Sensor:", this.floors[GROUND_FLOOR].get());
         SmartDashboard.putBoolean("Middle Floor Sensor:", this.floors[MIDDLE_FLOOR].get());
