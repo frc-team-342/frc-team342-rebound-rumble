@@ -91,6 +91,10 @@ public class Elevator extends Subsystem {
             this.stop();
         }
     }
+    
+    public void simpleUp() {
+        this.elevatorMotor.set(-1.0);
+    }
 
     /**
      * Move the elevator down.  If the current floor is the bottom most or ground floor then the elevator will not move.
@@ -100,6 +104,10 @@ public class Elevator extends Subsystem {
         if (currentFloor != GROUND_FLOOR) {
             this.elevatorMotor.set(1.0);
         }
+    }
+    
+    public void simpleDown() {
+        this.elevatorMotor.set(1.0);
     }
 
     /**

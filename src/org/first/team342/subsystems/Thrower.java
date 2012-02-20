@@ -36,8 +36,9 @@ public class Thrower extends Subsystem {
             this.throwerMotorMaster.configEncoderCodesPerRev(360);
             this.throwerMotorMaster.setSpeedReference(CANJaguar.SpeedReference.kEncoder);
             this.throwerMotorMaster.enableControl();
+            this.throwerMotorSlave.enableControl();
         } catch (CANTimeoutException ex) {
-            ex.printStackTrace();
+            System.out.println("The Thrower Timed Out");
         }
     }
 
