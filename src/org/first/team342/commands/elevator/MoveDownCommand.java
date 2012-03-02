@@ -24,13 +24,13 @@ public class MoveDownCommand extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        this.initialFloor = this.elevator.getCurrentFloor();
-        this.targetFloor = this.initialFloor;
-
-        if (this.initialFloor > Elevator.GROUND_FLOOR) {
-            this.targetFloor = this.initialFloor - 1;
-        }
-        System.out.println("target:\t" + this.targetFloor);
+//        this.initialFloor = this.elevator.getCurrentFloor();
+//        this.targetFloor = this.initialFloor;
+//
+//        if (this.initialFloor > Elevator.GROUND_FLOOR) {
+//            this.targetFloor = this.initialFloor - 1;
+//        }
+//        System.out.println("target:\t" + this.targetFloor);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -40,14 +40,15 @@ public class MoveDownCommand extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (this.elevator.getCurrentFloor() == this.targetFloor);
+        return false;
+        //return (this.elevator.getCurrentFloor() == this.targetFloor);
     }
 
     // Called once after isFinished returns true
     protected void end() {
         this.elevator.stop();
-        System.out.println("Reached destination:\t" + this.targetFloor);
-         this.elevator.setCurrentFloor(this.targetFloor);
+//        System.out.println("Reached destination:\t" + this.targetFloor);
+//         this.elevator.setCurrentFloor(this.targetFloor);
     }
 
     // Called when another command which requires one or more of the same

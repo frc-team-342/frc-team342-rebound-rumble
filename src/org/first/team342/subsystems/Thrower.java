@@ -25,22 +25,25 @@ public class Thrower extends Subsystem {
     private CANJaguar throwerMotorSlave;
 
     private Thrower() {
+        this.throwerMotorMaster = RobotUtilities.initializeCANJaguar(RobotMap.CAN_DEVICE_THROWER_MOTOR_MASTER);
+        this.throwerMotorSlave = RobotUtilities.initializeCANJaguar(RobotMap.CAN_DEVICE_THROWER_MOTOR_SLAVE);
+
         try {
-            this.throwerMotorMaster = RobotUtilities.initializeCANJaguar(RobotMap.CAN_DEVICE_THROWER_MOTOR_MASTER);
-            this.throwerMotorSlave = RobotUtilities.initializeCANJaguar(RobotMap.CAN_DEVICE_THROWER_MOTOR_SLAVE);
-            
-            this.throwerMotorMaster.changeControlMode(CANJaguar.ControlMode.kSpeed);
-            this.throwerMotorSlave.changeControlMode(CANJaguar.ControlMode.kVoltage);
-            
+            if (this.throwerMotorMaster != null) {
+                this.throwerMotorMaster.changeControlMode(CANJaguar.ControlMode.kSpeed);
+                this.throwerMotorMaster.configEncoderCodesPerRev(360);
+                this.throwerMotorMaster.setSpeedReference(CANJaguar.SpeedReference.kEncoder);
+                this.throwerMotorMaster.enableControl();
+            }
+
+            if (this.throwerMotorSlave != null) {
+                this.throwerMotorSlave.changeControlMode(CANJaguar.ControlMode.kVoltage);
+                this.throwerMotorSlave.enableControl();
+            }
+
             this.updatePID();
-           
-            this.throwerMotorMaster.configEncoderCodesPerRev(360);
-            this.throwerMotorMaster.setSpeedReference(CANJaguar.SpeedReference.kEncoder);
-            
-            this.throwerMotorMaster.enableControl();
-            this.throwerMotorSlave.enableControl();
-        } catch (CANTimeoutException ex) {
-            ex.printStackTrace();
+        } catch (CANTimeoutException e) {
+            System.out.println("An error occured initializing the thrower motors.");
         }
     }
 
@@ -110,7 +113,9 @@ public class Thrower extends Subsystem {
 
     public void updateStatus() {
         try {
-            SmartDashboard.putDouble("Shooter Speed: ", this.throwerMotorMaster.getSpeed());
+            if (this.throwerMotorMaster != null) {
+                SmartDashboard.putDouble("Shooter Speed: ", this.throwerMotorMaster.getSpeed());
+            }
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }

@@ -45,7 +45,7 @@ public class RampUpCommand extends CommandBase {
      * position.  Otherwise, returns <code>false</code>.
      */
     protected boolean isFinished() {
-        return this.ramp.isLeverRetracted();
+        return true;//this.ramp.isLeverRetracted();
     }
 
     /**
@@ -53,7 +53,7 @@ public class RampUpCommand extends CommandBase {
      * Calling this method will stop the movement of the ramp mechanism.
      */
     protected void end() {
-        this.ramp.stop();
+        //this.ramp.stop();
     }
 
     /**

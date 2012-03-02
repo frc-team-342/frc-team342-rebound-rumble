@@ -5,7 +5,6 @@
 package org.first.team342.subsystems;
 
 import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.first.team342.RobotMap;
 import org.first.team342.RobotUtilities;
@@ -50,9 +49,9 @@ public class Drive extends Subsystem {
     }
 
     public void driveWithJoystick(Joystick joystick) {
-        double x = -joystick.getX();
-        double y = joystick.getY();
-        double rot = joystick.getZ();
+        double x = -joystick.getX() * 0.80;
+        double y = joystick.getY() * 0.80;
+        double rot = joystick.getZ() * 0.80;
         this.robotDrive.mecanumDrive_Cartesian(x, y, rot, 0.0);
     }
 

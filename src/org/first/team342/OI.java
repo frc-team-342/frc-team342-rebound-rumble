@@ -9,10 +9,10 @@ import org.first.team342.commands.drive.DriveWithJoystick;
 import org.first.team342.commands.drive.GyroBalanceCommand;
 import org.first.team342.commands.elevator.MoveDownCommand;
 import org.first.team342.commands.elevator.MoveUpCommand;
-import org.first.team342.commands.elevator.SimpleDownCommand;
-import org.first.team342.commands.elevator.SimpleUpCommand;
+import org.first.team342.commands.elevator.StopElevatorCommand;
 import org.first.team342.commands.ramp.RampDownCommand;
 import org.first.team342.commands.ramp.RampUpCommand;
+import org.first.team342.commands.ramp.StopRampCommand;
 import org.first.team342.commands.thrower.FlywheelReverseCommand;
 import org.first.team342.commands.thrower.FlywheelStopCommand;
 
@@ -42,8 +42,10 @@ public class OI {
         fire.whenReleased(new FlywheelStopCommand());
         
         rampDown.whileHeld(new RampDownCommand());
+        rampDown.whenReleased(new StopRampCommand());
 //        ramp.whenReleased(new RampUpCommand());
         rampUp.whileHeld(new RampUpCommand());
+        rampUp.whenReleased(new StopRampCommand());
         
         conveyorToggle.whenPressed(new ConveyorToggleCommand());
         
@@ -53,11 +55,11 @@ public class OI {
         balance.whileHeld(new GyroBalanceCommand());
         balance.whenReleased(new DriveWithJoystick());
         
-//        elevatorUp.whenPressed(new MoveUpCommand());
-//        elevatorDown.whenPressed(new MoveDownCommand());
+        elevatorUp.whileHeld(new MoveUpCommand());
+        elevatorUp.whenReleased(new StopElevatorCommand());
         
-        elevatorUp.whileHeld(new SimpleUpCommand());
-        elevatorDown.whileHeld(new SimpleDownCommand());
+        elevatorDown.whileHeld(new MoveDownCommand());
+        elevatorDown.whenReleased(new StopElevatorCommand());
     }
 
     public static OI getInstance() {

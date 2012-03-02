@@ -21,7 +21,7 @@ public class Ramp extends Subsystem {
     /**
      * The constant value for the default speed of the lever moving up.
      */
-    public static final double DEFAULT_SPEED_UP = -0.25;
+    public static final double DEFAULT_SPEED_UP = -0.75;
     
     /**
      * The constant value for the default speed of the lever moving down.
