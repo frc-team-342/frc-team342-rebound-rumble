@@ -37,7 +37,7 @@ public class ReboundRumbleRobot extends IterativeRobot {
     public void robotInit() {
         this.thrower = Thrower.getInstance();
         this.elevator = Elevator.getInstance();
-        joystickCommand = new DriveWithJoystick();
+        this.joystickCommand = new DriveWithJoystick();
     }
 
     public void autonomousInit() {
@@ -66,5 +66,26 @@ public class ReboundRumbleRobot extends IterativeRobot {
         this.thrower.updateStatus();
         this.thrower.updatePID();
         this.elevator.updateStatus();
+        
+        if (this.isEnabled()) {
+            this.elevator.intakeOn();
+        } else {
+            this.elevator.intakeOff();
+        }
+    }
+
+    //TODO need to override this method.
+    public void disabledInit() {
+        super.disabledInit();
+    }
+    
+    //TODO need to override this method.
+    public void disabledContinuous() {
+        super.disabledContinuous();
+    }
+
+    //TODO need to override this method.
+    public void disabledPeriodic() {
+        super.disabledPeriodic();
     }
 }

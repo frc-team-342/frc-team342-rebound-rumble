@@ -5,9 +5,9 @@
 package org.first.team342.subsystems;
 
 import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.first.team342.RobotMap;
+import org.first.team342.RobotUtilities;
 import org.first.team342.commands.drive.DriveWithJoystick;
 
 /**
@@ -28,15 +28,10 @@ public class Drive extends Subsystem {
     private Gyro gyro;
 
     private Drive() {
-        try {
-            this.leftFront = new CANJaguar(RobotMap.CAN_DEVICE_LEFT_FRONT_DRIVE_MOTOR);
-            this.rightFront = new CANJaguar(RobotMap.CAN_DEVICE_RIGHT_FRONT_DRIVE_MOTOR);
-            this.leftRear = new CANJaguar(RobotMap.CAN_DEVICE_LEFT_REAR_DRIVE_MOTOR);
-            this.rightRear = new CANJaguar(RobotMap.CAN_DEVICE_RIGHT_REAR_DRIVE_MOTOR);
-        } catch (CANTimeoutException e) {
-            e.printStackTrace();
-        }
-
+        this.leftFront = RobotUtilities.initializeCANJaguar(RobotMap.CAN_DEVICE_LEFT_FRONT_DRIVE_MOTOR);
+        this.rightFront = RobotUtilities.initializeCANJaguar(RobotMap.CAN_DEVICE_RIGHT_FRONT_DRIVE_MOTOR);
+        this.leftRear = RobotUtilities.initializeCANJaguar(RobotMap.CAN_DEVICE_LEFT_REAR_DRIVE_MOTOR);
+        this.rightRear = RobotUtilities.initializeCANJaguar(RobotMap.CAN_DEVICE_RIGHT_REAR_DRIVE_MOTOR);
 
         this.robotDrive = new RobotDrive(leftFront, leftRear, rightFront, rightRear);
         this.robotDrive.setSafetyEnabled(false);
@@ -54,9 +49,9 @@ public class Drive extends Subsystem {
     }
 
     public void driveWithJoystick(Joystick joystick) {
-        double x = -joystick.getX();
-        double y = joystick.getY();
-        double rot = joystick.getZ();
+        double x = -joystick.getX() * 0.80;
+        double y = joystick.getY() * 0.80;
+        double rot = joystick.getZ() * 0.80;
         this.robotDrive.mecanumDrive_Cartesian(x, y, rot, 0.0);
     }
 

@@ -4,7 +4,6 @@
  */
 package org.first.team342.subsystems;
 
-import org.first.team342.commands.elevator.ResetElevatorCommand;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -45,11 +44,16 @@ public class Elevator extends Subsystem {
      * The speed controller for the elevator motor.
      */
     private Victor elevatorMotor;
+    
+    /**
+     * The ball intake motor a the top of the elevator system.
+     */
+    private Victor intakeMotor;
+    
     /**
      * The digital input sensors for each floor.  It is indexed based off of the constants for the floors.
      */
     private DigitalInput[] floors;
-    private static int currentFloor = 0;
 
     /**
      * Initialize the elevator.
@@ -57,6 +61,8 @@ public class Elevator extends Subsystem {
     private Elevator() {
         this.elevatorMotor = new Victor(RobotMap.PWM_CHANNEL_ELEVATOR);
 
+        this.intakeMotor = new Victor(RobotMap.PWM_CHANNEL_INTAKE);
+        
         this.floors = new DigitalInput[4];
 
         this.floors[GROUND_FLOOR] = new DigitalInput(RobotMap.DIO_CHANNEL_GROUND_FLOOR);
@@ -116,19 +122,15 @@ public class Elevator extends Subsystem {
      * @return the current floor.
      */
     public int getCurrentFloor() {
-
+        int currentFloor = -1;
         for (int floor = GROUND_FLOOR; floor < this.floors.length; floor++) {
-            if (this.floors[floor].get()) {
+            if (!this.floors[floor].get()) {
                 currentFloor = floor;
                 break;
             }
         }
 
         return currentFloor;
-    }
-
-    public void setCurrentFloor(int floor) {
-        this.currentFloor = floor;
     }
 
     public void initDefaultCommand() {
@@ -140,5 +142,13 @@ public class Elevator extends Subsystem {
         SmartDashboard.putBoolean("Middle Floor Sensor:", this.floors[MIDDLE_FLOOR].get());
         SmartDashboard.putBoolean("Top Floor Sensor:", this.floors[TOP_FLOOR].get());
         SmartDashboard.putBoolean("Shooter Floor Sensor:", this.floors[SHOOTER_FLOOR].get());
+    }
+    
+    public void intakeOn() {
+        this.intakeMotor.set(-1.0);
+    }
+    
+    public void intakeOff() {
+        this.intakeMotor.set(0.0);
     }
 }
