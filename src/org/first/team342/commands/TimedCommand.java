@@ -4,31 +4,39 @@
  */
 package org.first.team342.commands;
 
+import edu.wpi.first.wpilibj.command.Command;
+
 /**
  *
  * @author abrightwell
  */
-public abstract class TimedCommand extends CommandBase {
-    
-    private long commandTime;
-    
+public abstract class TimedCommand extends Command {
+
+    /**
+     * The amount of time in milliseconds that the command should run.
+     */
+    private long duration;
+    /**
+     * The time in milliseconds of when the command started.
+     */
     private long startTime;
-    
-    
-    
-    public TimedCommand(long commandTime) {
-        this.commandTime = commandTime;
+
+    /**
+     * Create a new timed command with the specified duration.
+     * @param duration the amount of time in milliseconds that the command 
+     * should run.
+     */
+    public TimedCommand(long duration) {
+        this.duration = duration;
     }
 
-    // Called just before this Command runs the first time
     protected void initialize() {
         this.startTime = System.currentTimeMillis();
     }
 
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         long currentTime = System.currentTimeMillis();
         long elapsedTime = currentTime - this.startTime;
-        return elapsedTime >= this.commandTime;
+        return (elapsedTime >= this.duration);
     }
 }

@@ -6,7 +6,10 @@ package org.first.team342.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
+import org.first.team342.commands.drive.TimedDriveBackwardCommand;
+import org.first.team342.commands.drive.TimedDriveForwardCommand;
 import org.first.team342.commands.elevator.MoveToFloorCommand;
+import org.first.team342.commands.ramp.TimedRampArmDownCommand;
 import org.first.team342.commands.thrower.FlywheelForwardCommand;
 import org.first.team342.commands.thrower.FlywheelStopCommand;
 
@@ -23,7 +26,8 @@ public class ShootAndTipCommand extends CommandGroup {
         this.addSequential(new MoveToFloorCommand(1));
         this.addSequential(new WaitCommand(1.0));
         this.addSequential(new FlywheelStopCommand());
-        // this.addSequential(); // move the robot backwards.
-        // this.addSequential(); // move ramp arm down.
+        this.addSequential(new TimedDriveBackwardCommand(2000));
+        this.addSequential(new TimedRampArmDownCommand(2000));
+        this.addSequential(new TimedDriveForwardCommand(500));
     }
 }

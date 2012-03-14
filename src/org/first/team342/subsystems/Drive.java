@@ -97,7 +97,7 @@ public class Drive extends Subsystem {
      */
     public void driveBackward(double value) {
         if (this.isValidDriveValue(value)) {
-            this.robotDrive.mecanumDrive_Cartesian(0.0, value, 0.0, 0.0);
+            this.robotDrive.mecanumDrive_Cartesian(0.0, -value, 0.0, 0.0);
         } else {
             System.out.println("Drive.driveBackward(value): Cound not drive backward, value = " + value);
         }
@@ -160,6 +160,13 @@ public class Drive extends Subsystem {
      */
     public void driveRight() {
         this.driveRight(1.0);
+    }
+    
+    /**
+     * Stop the robot.
+     */
+    public void stop() {
+        this.robotDrive.mecanumDrive_Cartesian(0.0, 0.0, 0.0, 0.0);
     }
 
     /**

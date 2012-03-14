@@ -31,8 +31,10 @@ public class TimedDriveBackwardCommand extends TimedCommand {
     }
 
     protected void end() {
+        this.drive.stop();
     }
 
     protected void interrupted() {
+        this.drive.stop();
     }
 }
