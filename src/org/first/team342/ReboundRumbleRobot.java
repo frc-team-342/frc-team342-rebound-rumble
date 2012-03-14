@@ -7,9 +7,12 @@
 package org.first.team342;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Watchdog;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.first.team342.autonomous.DefaultAutonomous;
+import org.first.team342.autonomous.ShootAndTipCommand;
 import org.first.team342.commands.drive.DriveWithJoystick;
 import org.first.team342.subsystems.Elevator;
 import org.first.team342.subsystems.Thrower;
@@ -29,6 +32,7 @@ public class ReboundRumbleRobot extends IterativeRobot {
     private Command joystickCommand;
     private Thrower thrower;
     private Elevator elevator;
+    private SendableChooser autonomousChooser;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -38,11 +42,16 @@ public class ReboundRumbleRobot extends IterativeRobot {
         this.thrower = Thrower.getInstance();
         this.elevator = Elevator.getInstance();
         this.joystickCommand = new DriveWithJoystick();
+
+        this.autonomousChooser = new SendableChooser();
+        this.autonomousChooser.addDefault("Default Autonomous", new DefaultAutonomous());
+        this.autonomousChooser.addObject("Shoot and Tip", new ShootAndTipCommand());
+        SmartDashboard.putData("Autonomous Mode", this.autonomousChooser);
     }
 
     public void autonomousInit() {
-        // schedule the autonomous command (example)
-        autonomousCommand.start();
+        this.autonomousCommand = (Command) this.autonomousChooser.getSelected();
+        this.autonomousCommand.start();
     }
 
     /**
@@ -53,7 +62,7 @@ public class ReboundRumbleRobot extends IterativeRobot {
     }
 
     public void teleopInit() {
-        
+
         joystickCommand.start();
     }
 
@@ -62,11 +71,11 @@ public class ReboundRumbleRobot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        
+
         this.thrower.updateStatus();
         this.thrower.updatePID();
         this.elevator.updateStatus();
-        
+
         if (this.isEnabled()) {
             this.elevator.intakeOn();
         } else {
@@ -78,7 +87,7 @@ public class ReboundRumbleRobot extends IterativeRobot {
     public void disabledInit() {
         super.disabledInit();
     }
-    
+
     //TODO need to override this method.
     public void disabledContinuous() {
         super.disabledContinuous();

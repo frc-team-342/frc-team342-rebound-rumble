@@ -5,6 +5,7 @@
 package org.first.team342;
 
 import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 
 /**
@@ -30,6 +31,20 @@ public class RobotUtilities {
             System.out.println(ex.getMessage() + " - Device Number: " + deviceNumber);
         }
 
+        return jaguar;
+    }
+    
+    /**
+     * Initialize a PWM Jaguar device with the given slot and channel.
+     * 
+     * @param slot the DIO slot on the cRIO that the digital sidecar is attached.
+     * 
+     * @param channel the PWM channel on the digital sidecar.
+     * 
+     * @return the initialized Jaguar.
+     */
+    public static Jaguar initializeJaguar(int slot, int channel) {
+        Jaguar jaguar = new Jaguar(slot, channel);
         return jaguar;
     }
 }

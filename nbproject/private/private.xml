@@ -2,10 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
-        <file>file:/C:/Users/abrightwell/Documents/NetBeansProjects/frc-team342-rebound-rumble/src/org/first/team342/OI.java</file>
-        <file>file:/C:/Users/abrightwell/Documents/NetBeansProjects/frc-team342-rebound-rumble/src/org/first/team342/ReboundRumbleRobot.java</file>
-        <file>file:/C:/Users/abrightwell/Documents/NetBeansProjects/frc-team342-rebound-rumble/src/org/first/team342/commands/DriveWithJoystick.java</file>
-        <file>file:/C:/Users/abrightwell/Documents/NetBeansProjects/frc-team342-rebound-rumble/src/org/first/team342/subsystems/Drive.java</file>
+        <file>file:/C:/Users/abrightwell/Documents/NetBeansProjects/frc-team342-rebound-rumble/src/org/first/team342/subsystems/Ramp.java</file>
+        <file>file:/C:/Users/abrightwell/Documents/NetBeansProjects/frc-team342-rebound-rumble/src/org/first/team342/commands/ramp/RampDownCommand.java</file>
+        <file>file:/C:/Users/abrightwell/Documents/NetBeansProjects/frc-team342-rebound-rumble/src/org/first/team342/subsystems/Elevator.java</file>
         <file>file:/C:/Users/abrightwell/Documents/NetBeansProjects/frc-team342-rebound-rumble/src/org/first/team342/RobotMap.java</file>
+        <file>file:/C:/Users/abrightwell/Documents/NetBeansProjects/frc-team342-rebound-rumble/src/org/first/team342/ReboundRumbleRobot.java</file>
+        <file>file:/C:/Users/abrightwell/Documents/NetBeansProjects/frc-team342-rebound-rumble/src/org/first/team342/subsystems/Thrower.java</file>
+        <file>file:/C:/Users/abrightwell/Documents/NetBeansProjects/frc-team342-rebound-rumble/src/org/first/team342/OI.java</file>
+        <file>file:/C:/Users/abrightwell/Documents/NetBeansProjects/frc-team342-rebound-rumble/src/org/first/team342/autonomous/ShootAndTipCommand.java</file>
+        <file>file:/C:/Users/abrightwell/Documents/NetBeansProjects/frc-team342-rebound-rumble/src/org/first/team342/autonomous/DefaultAutonomous.java</file>
     </open-files>
 </project-private>
