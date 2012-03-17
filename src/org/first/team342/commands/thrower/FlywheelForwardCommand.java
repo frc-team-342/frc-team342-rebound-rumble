@@ -14,10 +14,16 @@ import org.first.team342.subsystems.Thrower;
  */
 public class FlywheelForwardCommand extends CommandBase {
     private Thrower thrower;
+    private double value;
     
-    public FlywheelForwardCommand() {
+    public FlywheelForwardCommand(double speed) {
         this.thrower = Thrower.getInstance();    
         requires(this.thrower);
+        this.value = -speed;
+    }
+    
+    public FlywheelForwardCommand() {
+        this.value = -3000;
     }
 
     // Called just before this Command runs the first time
@@ -27,8 +33,10 @@ public class FlywheelForwardCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        DriverStation driverStation = DriverStation.getInstance();
-        double value = driverStation.getAnalogIn(1) * 600;
+        System.out.println(value);
+//        value = -3000;
+        DriverStation driver = DriverStation.getInstance();
+        this.value = driver.getAnalogIn(1) * -600;
         this.thrower.throwForward(value);
     }
 

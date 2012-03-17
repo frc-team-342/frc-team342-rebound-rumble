@@ -7,6 +7,7 @@ package org.first.team342.subsystems;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.first.team342.RobotMap;
 
 /**
@@ -45,11 +46,13 @@ public class Conveyor extends Subsystem {
     public void conveyorOff() {
         conveyorMotor.set(0.0);
         this.isOn = false;
+        SmartDashboard.putBoolean("Conveyor", isOn);
     }
     
     public void conveyorOn() {
         conveyorMotor.set(-1.0);
         this.isOn = true;
+        SmartDashboard.putBoolean("Conveyor", isOn);
     }
     
     // TODO: add method "turnConveyorOn"
@@ -57,6 +60,7 @@ public class Conveyor extends Subsystem {
     // TODO: refactor method name to "reverseConveyor"
     public void conveyorReverse() {
         conveyorMotor.set(1.0);
+        SmartDashboard.putBoolean("Conveyor", false);
     }
 
     public boolean isConveyorOn() {

@@ -103,6 +103,8 @@ public class Elevator extends Subsystem {
         int currentFloor = this.getCurrentFloor();
         if (currentFloor != GROUND_FLOOR) {
             this.elevatorMotor.set(1.0);
+        } else {
+            this.stop();
         }
     }
     
