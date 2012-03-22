@@ -34,6 +34,7 @@ public class MoveToFloorCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        System.out.println("Moving to Floor: " + this.targetFloor);
         if (this.targetFloor < this.initialFloor) {
             this.elevator.down();
         } else if (this.targetFloor > this.initialFloor) {
