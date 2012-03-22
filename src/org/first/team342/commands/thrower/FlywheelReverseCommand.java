@@ -15,21 +15,26 @@ import org.first.team342.subsystems.Thrower;
 public class FlywheelReverseCommand extends CommandBase {
     
     private Thrower thrower;
+    private double value;
     
-    public FlywheelReverseCommand() {
+    public FlywheelReverseCommand(double value) {
+        this.value = value;
         this.thrower = Thrower.getInstance();
         requires(this.thrower);
+    }
+    
+    public FlywheelReverseCommand() {
+        this(3000);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        System.out.println("Spinning Thrower Backward");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        DriverStation driverStation = DriverStation.getInstance();
-        double value = 0.0 - driverStation.getAnalogIn(1) * 600;
-        this.thrower.throwReverse(value);
+        this.thrower.throwReverse(this.value);
     }
 
     // Make this return true when this Command no longer needs to run execute()

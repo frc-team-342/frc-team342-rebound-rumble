@@ -31,8 +31,8 @@ public class Thrower extends Subsystem {
         try {
             if (this.throwerMotorMaster != null) {
                 this.throwerMotorMaster.changeControlMode(CANJaguar.ControlMode.kSpeed);
-                this.throwerMotorMaster.configEncoderCodesPerRev(360);
                 this.throwerMotorMaster.setSpeedReference(CANJaguar.SpeedReference.kEncoder);
+                this.throwerMotorMaster.configEncoderCodesPerRev(360);
                 this.throwerMotorMaster.enableControl();
             }
 
@@ -60,6 +60,8 @@ public class Thrower extends Subsystem {
             if (this.throwerMotorSlave != null) {
                 this.throwerMotorSlave.setX(this.throwerMotorMaster.getOutputVoltage());
             }
+            
+            System.out.println("Speed: " + this.throwerMotorMaster.getSpeed());
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }

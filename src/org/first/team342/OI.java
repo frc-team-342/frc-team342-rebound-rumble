@@ -1,6 +1,8 @@
 package org.first.team342;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.first.team342.commands.conveyor.ConveyorOffCommand;
 import org.first.team342.commands.conveyor.ConveyorReverseCommand;
@@ -9,12 +11,14 @@ import org.first.team342.commands.drive.DriveWithJoystick;
 import org.first.team342.commands.drive.GyroBalanceCommand;
 import org.first.team342.commands.elevator.MoveDownCommand;
 import org.first.team342.commands.elevator.MoveUpCommand;
+import org.first.team342.commands.elevator.ResetElevatorCommandGroup;
 import org.first.team342.commands.elevator.StopElevatorCommand;
 import org.first.team342.commands.ramp.RampDownCommand;
 import org.first.team342.commands.ramp.RampUpCommand;
 import org.first.team342.commands.ramp.StopRampCommand;
-import org.first.team342.commands.thrower.FlywheelReverseCommand;
+import org.first.team342.commands.thrower.FlywheelForwardCommand;
 import org.first.team342.commands.thrower.FlywheelStopCommand;
+import org.first.team342.commands.thrower.ThrowerMaxSpeedCommand;
 
 /**
  * 
@@ -27,9 +31,12 @@ public class OI {
     private static final OI INSTANCE = new OI();
 
     private OI() {
+        Preferences preferences = Preferences.getInstance();
+        
         this.driveController = new Joystick(RobotMap.JOYSTICK_DRIVE_CONTROL);
         
         JoystickButton fire = new JoystickButton(driveController, 6);
+        JoystickButton fireMax = new JoystickButton(driveController, 5);
         JoystickButton conveyorToggle = new JoystickButton(driveController, 3);
         JoystickButton conveyorReverse = new JoystickButton(driveController, 1);
         JoystickButton balance = new JoystickButton(driveController, 10);
@@ -38,8 +45,11 @@ public class OI {
         JoystickButton elevatorUp = new JoystickButton(driveController, 8);
         JoystickButton elevatorDown = new JoystickButton(driveController, 7);
         
-        fire.whileHeld(new FlywheelReverseCommand());
+        fire.whileHeld(new FlywheelForwardCommand(0));
         fire.whenReleased(new FlywheelStopCommand());
+        
+        fireMax.whileHeld(new ThrowerMaxSpeedCommand());
+        fireMax.whenReleased(new FlywheelStopCommand());
         
         rampDown.whileHeld(new RampDownCommand());
         rampDown.whenReleased(new StopRampCommand());
@@ -56,7 +66,7 @@ public class OI {
         balance.whenReleased(new DriveWithJoystick());
         
         elevatorUp.whileHeld(new MoveUpCommand());
-        elevatorUp.whenReleased(new StopElevatorCommand());
+        elevatorUp.whenReleased(new ResetElevatorCommandGroup());
         
         elevatorDown.whileHeld(new MoveDownCommand());
         elevatorDown.whenReleased(new StopElevatorCommand());

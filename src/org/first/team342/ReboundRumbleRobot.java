@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.first.team342.autonomous.DefaultAutonomous;
 import org.first.team342.autonomous.ShootAndTipCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.first.team342.commands.drive.DriveWithJoystick;
 import org.first.team342.subsystems.Elevator;
 import org.first.team342.subsystems.Thrower;
@@ -87,9 +87,8 @@ public class ReboundRumbleRobot extends IterativeRobot {
         }
     }
 
-    //TODO need to override this method.
     public void disabledInit() {
-        super.disabledInit();
+        SmartDashboard.putBoolean("Conveyor", false);
     }
 
     //TODO need to override this method.

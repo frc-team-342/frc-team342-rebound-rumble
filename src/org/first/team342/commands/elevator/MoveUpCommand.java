@@ -37,6 +37,11 @@ public class MoveUpCommand extends CommandBase {
         this.elevator.up();
     }
 
+    protected boolean isFinished() {
+        return false;
+    }
+    
+
     // Called once after isFinished returns true
     protected void end() {
         this.elevator.stop();
