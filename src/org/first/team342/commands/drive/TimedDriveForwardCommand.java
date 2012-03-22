@@ -31,6 +31,7 @@ public class TimedDriveForwardCommand extends TimedCommand {
     }
 
     protected void execute() {
+        System.out.println("Timed Drive Forward");
         this.drive.driveForward();
     }
 

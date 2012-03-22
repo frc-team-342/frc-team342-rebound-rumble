@@ -27,6 +27,7 @@ public class TimedDriveBackwardCommand extends TimedCommand {
     }
 
     protected void execute() {
+        System.out.println("Timed Drive Backward");
         this.drive.driveBackward();
     }
 

@@ -49,10 +49,11 @@ public class Drive extends Subsystem {
         }
 
         //create the accelerometer object
-        this.accelerometer = new ADXL345_I2C(1, ADXL345_I2C.DataFormat_Range.k16G);
-        // create the gyro object
-        this.gyro = new Gyro(RobotMap.DEFAULT_ANNALOG_SLOT, RobotMap.ANALOG_CHANNEL_GYRO);
-        this.previousGyroAngle = this.gyro.getAngle();
+//        this.accelerometer = new ADXL345_I2C(1, ADXL345_I2C.DataFormat_Range.k16G);
+//        // create the gyro object
+//        this.gyro = new Gyro(RobotMap.DEFAULT_ANNALOG_SLOT, RobotMap.ANALOG_CHANNEL_GYRO);
+//        this.previousGyroAngle = this.gyro.getAngle();
+        System.out.println("Done Initializing Drive Subsystem.");
     }
 
     public static Drive getInstance() {

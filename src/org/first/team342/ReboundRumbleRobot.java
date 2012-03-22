@@ -39,14 +39,19 @@ public class ReboundRumbleRobot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+        System.out.println("Initializing Robot");
         this.thrower = Thrower.getInstance();
         this.elevator = Elevator.getInstance();
+        System.out.println("Before Joystick Command");
         this.joystickCommand = new DriveWithJoystick();
+        System.out.println("After Joystick Command");
 
+        System.out.println("Creating Autonomous Mode Chooser");
         this.autonomousChooser = new SendableChooser();
         this.autonomousChooser.addDefault("Default Autonomous", new DefaultAutonomous());
         this.autonomousChooser.addObject("Shoot and Tip", new ShootAndTipCommand());
         SmartDashboard.putData("Autonomous Mode", this.autonomousChooser);
+        System.out.println("Autonomous Mode Chooser Sent To Dashboard");
     }
 
     public void autonomousInit() {
@@ -62,8 +67,7 @@ public class ReboundRumbleRobot extends IterativeRobot {
     }
 
     public void teleopInit() {
-
-        joystickCommand.start();
+        this.joystickCommand.start();
     }
 
     /**

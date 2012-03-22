@@ -22,6 +22,7 @@ public class TimedRampArmDownCommand extends TimedCommand {
     }
 
     protected void execute() {
+        System.out.println("Timed Ramp Arm Down");
         this.ramp.down();
     }
 

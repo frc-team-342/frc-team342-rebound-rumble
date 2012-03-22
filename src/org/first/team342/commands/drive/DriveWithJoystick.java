@@ -14,10 +14,11 @@ import org.first.team342.subsystems.Drive;
  * @author FIRST Team 342
  */
 public class DriveWithJoystick extends CommandBase {
-    private Drive drive = Drive.getInstance();
+    private Drive drive;
     private Joystick joystick;
     
     public DriveWithJoystick() {
+        this.drive = Drive.getInstance();
         requires(drive);
     }
 
