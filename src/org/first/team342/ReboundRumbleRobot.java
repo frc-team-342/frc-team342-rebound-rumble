@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import org.first.team342.autonomous.DefaultAutonomous;
 import org.first.team342.autonomous.ShootAndTipCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.first.team342.commands.autonomous.ShootOnly;
 import org.first.team342.commands.drive.DriveWithJoystick;
 import org.first.team342.subsystems.Elevator;
 import org.first.team342.subsystems.Thrower;
@@ -48,7 +49,7 @@ public class ReboundRumbleRobot extends IterativeRobot {
 
         System.out.println("Creating Autonomous Mode Chooser");
         this.autonomousChooser = new SendableChooser();
-        this.autonomousChooser.addDefault("Default Autonomous", new DefaultAutonomous());
+        this.autonomousChooser.addDefault("Default Autonomous", new ShootOnly());
         this.autonomousChooser.addObject("Shoot and Tip", new ShootAndTipCommand());
         SmartDashboard.putData("Autonomous Mode", this.autonomousChooser);
         System.out.println("Autonomous Mode Chooser Sent To Dashboard");

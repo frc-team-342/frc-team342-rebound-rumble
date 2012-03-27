@@ -15,20 +15,24 @@ public class TimedDriveBackwardCommand extends TimedCommand {
      */
     private Drive drive;
     
+    private double speed;
+    
     /**
      * Create a new command set to drive for the specified amount of time.
      * 
      * @param driveTime the time in milliseconds to drive backwards.
      */
-    public TimedDriveBackwardCommand(long driveTime) {
+    public TimedDriveBackwardCommand(long driveTime, double speed) {
         super(driveTime);
+        this.speed = speed;
         this.drive = Drive.getInstance();
         this.requires(this.drive);
+        System.out.println("Timed Drive Backward Command Initialized!");
     }
 
     protected void execute() {
         System.out.println("Timed Drive Backward");
-        this.drive.driveBackward();
+        this.drive.driveBackward(this.speed);
     }
 
     protected void end() {

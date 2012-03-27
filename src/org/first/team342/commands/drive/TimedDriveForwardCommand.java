@@ -18,21 +18,23 @@ public class TimedDriveForwardCommand extends TimedCommand {
      * The robot drive subsystem.
      */
     private Drive drive;
+    private final double speed;
     
     /**
      * Create a new command set to drive the robot forward for the specified amount of time.
      * 
      * @param driveTime the time in milliseconds to drive forward.
      */
-    public TimedDriveForwardCommand(long driveTime) {
+    public TimedDriveForwardCommand(long driveTime, double speed) {
         super(driveTime);
+        this.speed = speed;
         this.drive = Drive.getInstance();
         this.requires(this.drive);
     }
 
     protected void execute() {
         System.out.println("Timed Drive Forward");
-        this.drive.driveForward();
+        this.drive.driveForward(this.speed);
     }
 
     protected void end() {

@@ -74,7 +74,7 @@ public class Drive extends Subsystem {
      */
     public void driveForward(double value) {
         if (this.isValidDriveValue(value)) {
-            this.robotDrive.mecanumDrive_Cartesian(0.0, value, 0.0, 0.0);
+            this.robotDrive.mecanumDrive_Cartesian(0.0, -value, 0.0, 0.0);
         } else {
             System.out.println("Drive.driveForward(value): Could not drive forward, value = " + value);
         }
@@ -98,7 +98,7 @@ public class Drive extends Subsystem {
      */
     public void driveBackward(double value) {
         if (this.isValidDriveValue(value)) {
-            this.robotDrive.mecanumDrive_Cartesian(0.0, -value, 0.0, 0.0);
+            this.robotDrive.mecanumDrive_Cartesian(0.0, value, 0.0, 0.0);
         } else {
             System.out.println("Drive.driveBackward(value): Cound not drive backward, value = " + value);
         }
@@ -176,7 +176,7 @@ public class Drive extends Subsystem {
      * @return <code>true</code> if the value is valid, otherwise <code>false</code>.
      */
     private boolean isValidDriveValue(double value) {
-        return (value < 0 || value > 1.0);
+        return (value > 0 && value <= 1.0);
     }
 
     public void tankDrive(double left, double right) {

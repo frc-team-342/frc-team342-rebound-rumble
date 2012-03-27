@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 import org.first.team342.commands.elevator.MoveToFloorCommand;
 import org.first.team342.commands.thrower.FlywheelReverseCommand;
 import org.first.team342.commands.thrower.FlywheelStopCommand;
+import org.first.team342.subsystems.Elevator;
 
 /**
  *
@@ -18,9 +19,9 @@ public class DefaultAutonomous extends CommandGroup {
     
     public DefaultAutonomous() {
         this.addParallel(new FlywheelReverseCommand());
-        this.addSequential(new MoveToFloorCommand(2));
+        this.addSequential(new MoveToFloorCommand(Elevator.TOP_FLOOR));
         this.addSequential(new WaitCommand(1.0));
-        this.addSequential(new MoveToFloorCommand(1));
+        this.addSequential(new MoveToFloorCommand(Elevator.SHOOTER_FLOOR));
         this.addSequential(new WaitCommand(1.0));
         this.addSequential(new FlywheelStopCommand());
     }

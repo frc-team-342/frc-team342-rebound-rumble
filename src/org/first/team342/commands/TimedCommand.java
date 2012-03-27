@@ -32,6 +32,7 @@ public abstract class TimedCommand extends Command {
 
     protected void initialize() {
         this.startTime = System.currentTimeMillis();
+        System.out.println("Start Time: " + this.startTime);
     }
 
     protected boolean isFinished() {

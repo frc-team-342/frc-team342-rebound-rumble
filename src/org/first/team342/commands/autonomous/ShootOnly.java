@@ -39,6 +39,6 @@ public class ShootOnly extends CommandGroup {
         addSequential(new WaitCommand(2));
         addSequential(new MoveToFloorCommand(3));
         addParallel(new MoveToFloorCommand(0));
-        addSequential(new FlywheelStopCommand());
+        addParallel(new FlywheelStopCommand());
     }
 }
